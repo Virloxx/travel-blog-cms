@@ -1,5 +1,7 @@
+import Test from './components/test'
+
 export default function Home() {
   return (
-    <p>Sceen</p>
+    <Test></Test>
   );
 }

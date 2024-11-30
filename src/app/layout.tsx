@@ -18,7 +18,7 @@ export default function RootLayout({
         <div id="page-wrapper">
           {/* Header */}
           <header id="header">
-            <h1><a href="index.html">Solid State</a></h1>
+            <h1><a href="index.html">Makita's Travel Blog</a></h1>
             <nav>
               <a href="#menu">Menu</a>
             </nav>
