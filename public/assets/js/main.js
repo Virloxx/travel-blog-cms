@@ -66,7 +66,7 @@
 
 			if ($menu._lock())
 				$body.addClass('is-menu-visible');
-
+			
 		};
 
 		$menu._hide = function() {
