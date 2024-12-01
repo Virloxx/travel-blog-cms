@@ -1,7 +1,7 @@
-import Test from './components/test'
+import SpotlightParent from './components/homeSpotlight/spotlight';
 
 export default function Home() {
   return (
-    <Test></Test>
+    <SpotlightParent ></SpotlightParent>
   );
 }

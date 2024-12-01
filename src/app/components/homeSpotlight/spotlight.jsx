@@ -1,8 +1,14 @@
 import React from 'react'
 
-export default function Test() {
+export function Spotlight({index, isAlt=false}) {
+  let normalClasses = "wrapper spotlight style1";
+
+  if(isAlt) {
+    normalClasses = "wrapper spotlight style1 alt"
+  }
+
   return (
-    <section id="one" className="wrapper spotlight style1">
+    <section id={index} className={normalClasses}>
         <div className="inner">
             <a href="#" className="image"><img src="/images/test.png" alt="" /></a>
             <div className="content">
@@ -11,6 +17,20 @@ export default function Test() {
                 <a href="#" className="special">Learn more</a>
             </div>
         </div>
-	</section>
+	  </section>
   )
 }
+
+export const SpotlightParent = () => {
+  const spotlights = [1, 2, 3, 4, 5]; // Example array to render multiple Test components
+
+  return (
+    <>
+      {spotlights.map((_, index) => (
+        <Spotlight index={index} key={index} isAlt={index % 2 !== 0} />
+      ))}
+    </>
+  );
+};
+
+export default SpotlightParent;
