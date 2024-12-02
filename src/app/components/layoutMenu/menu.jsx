@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 
-function Menu() {
+function Menu(props) {
   return (
     <nav id="menu">
       <div className="inner">
@@ -13,7 +13,7 @@ function Menu() {
           <li><a href="#">Log In</a></li>
           <li><a href="#">Sign Up</a></li>
         </ul>
-        <a href="#" className="close">Close</a>
+        <a href="#" onClick={props.close} className="close">Close</a>
       </div>
     </nav>
   )

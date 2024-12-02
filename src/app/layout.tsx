@@ -1,4 +1,6 @@
-import React from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
+import Menu from './components/layoutMenu/menu';
 import '@/app/ui/main.css';
 
 export default function RootLayout({
@@ -6,31 +8,56 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+  const [isMenuVisible, setMenuVisible] = useState(false);
+
+  function toggleMenu() {
+    setMenuVisible(prevState => !prevState)
+  }
+
+  useEffect(() => {
+    if (isMenuVisible) {
+      document.body.classList.add('is-menu-visible');
+    } else {
+      document.body.classList.remove('is-menu-visible');
+    }
+
+    return () => {
+      document.body.classList.remove('is-menu-visible');
+    };
+  }, [isMenuVisible]);
+
   return (
     <html lang="en">
       <head>
-        <title>Solid State by HTML5 UP</title>
+        <title>Beyond Borders</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       </head>
       <body>
-        {/* Page Wrapper */}
         <div id="page-wrapper">
           {/* Header */}
           <header id="header">
-            <h1><a href="index.html">Makita's Travel Blog</a></h1>
+            <h1><a href="index.html">Beyond Borders</a></h1>
             <nav>
-              <a href="#menu">Menu</a>
+              <a href="#menu" onClick={(e) => { e.preventDefault(); toggleMenu(); }}>Menu</a>
             </nav>
           </header>
+
           <section id="wrapper">
             {children}
           </section>
+
           {/* Footer */}
           <section id="footer">
             <div className="inner">
               <h2 className="major">Get in touch</h2>
-              <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+              <p>
+                Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. 
+                Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, 
+                purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. 
+                Sed ac elementum arcu. Quisque placerat auctor laoreet.
+              </p>
               <form method="post" action="#">
                 <div className="fields">
                   <div className="field">
@@ -57,17 +84,27 @@ export default function RootLayout({
                   Nashville, TN 00000-0000
                 </li>
                 <li className="icon solid fa-phone">(000) 000-0000</li>
-                <li className="icon solid fa-envelope"><a href="#">information@untitled.tld</a></li>
-                <li className="icon brands fa-twitter"><a href="#">twitter.com/untitled-tld</a></li>
-                <li className="icon brands fa-facebook-f"><a href="#">facebook.com/untitled-tld</a></li>
-                <li className="icon brands fa-instagram"><a href="#">instagram.com/untitled-tld</a></li>
+                <li className="icon solid fa-envelope">
+                  <a href="#">information@untitled.tld</a>
+                </li>
+                <li className="icon brands fa-twitter">
+                  <a href="#">twitter.com/untitled-tld</a>
+                </li>
+                <li className="icon brands fa-facebook-f">
+                  <a href="#">facebook.com/untitled-tld</a>
+                </li>
+                <li className="icon brands fa-instagram">
+                  <a href="#">instagram.com/untitled-tld</a>
+                </li>
               </ul>
               <ul className="copyright">
-                <li>&copy; Untitled Inc. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                <li>&copy; Untitled Inc. All rights reserved.</li>
+                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
               </ul>
             </div>
           </section>
         </div>
+        <Menu close={toggleMenu}></Menu>
       </body>
     </html>
   );
