@@ -1,33 +1,51 @@
-import React from 'react'
+"use client"
+import React, { useEffect, useState } from 'react';
 
-export function Spotlight({index, isAlt=false}) {
+export function Spotlight({ index, isAlt = false, title, content, img_url }) {
   let normalClasses = "wrapper spotlight style1";
 
-  if(isAlt) {
-    normalClasses = "wrapper spotlight style1 alt"
+  if (isAlt) {
+    normalClasses = "wrapper spotlight style1 alt";
   }
 
   return (
     <section id={index} className={normalClasses}>
-        <div className="inner">
-            <a href="#" className="image"><img src="/images/test.png" alt="" /></a>
-            <div className="content">
-                <h2 className="major">Magna arcu feugiat</h2>
-                <p>Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras turpis ante, nullam sit amet turpis non, sollicitudin posuere urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla cursus.</p>
-                <a href="#" className="special">Learn more</a>
-            </div>
+      <div className="inner">
+        <a href="#" className="image"><img src={img_url} alt={title} /></a>
+        <div className="content">
+          <h2 className="major">{title}</h2>
+          <p>{content}</p>
+          <a href="#" className="special">Learn more</a>
         </div>
-	  </section>
-  )
+      </div>
+    </section>
+  );
 }
 
 export const SpotlightParent = () => {
-  const spotlights = [1, 2, 3, 4, 5]; // Example array to render multiple Test components
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await fetch('/api/posts');
+      const data = await response.json();
+      setPosts(data);
+    }
+
+    fetchPosts();
+  }, []);
 
   return (
     <>
-      {spotlights.map((_, index) => (
-        <Spotlight index={index} key={index} isAlt={index % 2 !== 0} />
+      {posts.map((post, index) => (
+        <Spotlight
+          key={post.id}
+          index={index}
+          isAlt={index % 2 !== 0}
+          title={post.title}
+          content={post.content}
+          img_url={post.img_url}
+        />
       ))}
     </>
   );
