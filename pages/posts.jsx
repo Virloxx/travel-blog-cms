@@ -6,7 +6,7 @@ export default function Posts() {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await fetch('/api/posts');
+      const response = await fetch('/api/spotlight');
       const data = await response.json();
       setPosts(data);
     }
@@ -18,13 +18,7 @@ export default function Posts() {
     <div>
       <h1>Posts</h1>
       <ul>
-        {posts.map((post) => (
-          <li key={post.id}>
-            <h2>{post.title}</h2>
-            <p>{post.content}</p>
-            {post.img_url && <img src={post.img_url} alt={post.title} />}
-          </li>
-        ))}
+        {posts}
       </ul>
     </div>
   );

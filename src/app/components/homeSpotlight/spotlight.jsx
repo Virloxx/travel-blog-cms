@@ -23,28 +23,28 @@ export function Spotlight({ index, isAlt = false, title, content, img_url }) {
 }
 
 export const SpotlightParent = () => {
-  const [posts, setPosts] = useState([]);
+  const [spotlight, setSpotlights] = useState([]);
 
   useEffect(() => {
-    async function fetchPosts() {
+    async function fetchSpotlights() {
       const response = await fetch('/api/spotlight');
       const data = await response.json();
-      setPosts(data);
+      setSpotlights(data);
     }
 
-    fetchPosts();
+    fetchSpotlights();
   }, []);
 
   return (
     <>
-      {posts.map((post, index) => (
+      {spotlight.map((post, index) => (
         <Spotlight
           key={post.id}
           index={index}
           isAlt={index % 2 !== 0}
-          title={post.title}
-          content={post.content}
-          img_url={post.img_url}
+          title={post.post.title}
+          content={post.post.short_description}
+          img_url={post.post.thumbnail_img}
         />
       ))}
     </>
