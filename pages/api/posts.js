@@ -1,11 +1,10 @@
-import pool from '../../db';
+import prisma from '../../src/app/lib/prisma';
 
 export default async function handler(req, res) {
   try {
-    const result = await pool.query('SELECT * FROM POSTS');
-    res.status(200).json(result.rows);
+    const posts = await prisma.spotlight.findMany();
+    res.status(200).json(posts);
   } catch (error) {
-    console.error('Error fetching posts:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: 'Failed to fetch posts' });
   }
 }
