@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import Menu from './components/layoutMenu/menu';
+import Menu from '../components/layoutMenu/menu';
 import '@/app/ui/main.css';
 
 export default function RootLayout({
