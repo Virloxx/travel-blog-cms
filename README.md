@@ -8,3 +8,5 @@ Nowa strona, żeby posiadała zdefiniowany w layout.tsx bazowy layout (menu+foot
 /src/app/<nazwa-sciezki-w-URL>/page.jsx
 
 to co zwraca komponent page.jsx, to bedzie wyswietlone tam gdzie layout.tsx ma {children}
+
+### DYNAMICZNE STRONY - POSTY
