@@ -18,7 +18,7 @@ function page() {
         </div>
         <a href="#">Forgot password?</a>
         <br></br>
-        <a href="/signup">Sign in</a>
+        <a href="/signup">Sign up</a>
         <ul className="actions">
           <li><input type="submit" value="Login" /></li>
         </ul>
