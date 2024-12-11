@@ -1,7 +1,10 @@
 export default async function Page({params,} : {params: Promise<{ slug: string }>}) 
 {
-  const slug = (await params).slug
+  const slug = (await params).slug;
+  // fetch post data
+
   return ( 
+    // display post
     <section id="wrapper">
     <header>
       <div className="inner">
@@ -16,6 +19,7 @@ export default async function Page({params,} : {params: Promise<{ slug: string }
     <section>
       <h3 className="major">Text</h3>
       <p>
+        {slug}
         This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
         This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
         This is <u>underlined</u> and this is code: <code>htmlFor (;;) { "..." }</code>. Finally, <a href="#">this is a link</a>.
