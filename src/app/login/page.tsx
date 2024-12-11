@@ -16,7 +16,9 @@ function page() {
             <input type="password" name="password" id="password" />
           </div>
         </div>
-        <input type="button" value="I forgot my password" />
+        <a href="#">Forgot password?</a>
+        <br></br>
+        <a href="#">Sign in</a>
         <ul className="actions">
           <li><input type="submit" value="Login" /></li>
         </ul>
