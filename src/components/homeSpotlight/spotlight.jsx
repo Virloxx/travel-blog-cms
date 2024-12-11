@@ -27,7 +27,7 @@ export const SpotlightParent = () => {
 
   useEffect(() => {
     async function fetchSpotlights() {
-      const response = await fetch('/api/spotlight');
+      const response = await fetch('/api/post');
       const data = await response.json();
       setSpotlights(data);
     }
