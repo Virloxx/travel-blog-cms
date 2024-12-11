@@ -10,7 +10,7 @@ function Menu(props) {
           <li><a href="index.html">Home</a></li>
           <li><a href="generic.html">Generic</a></li>
           <li><a href="elements.html">Elements</a></li>
-          <li><a href="#">Log In</a></li>
+          <li><a href="/login">Log In</a></li>
           <li><a href="#">Sign Up</a></li>
         </ul>
         <a href="#" onClick={props.close} className="close">Close</a>
