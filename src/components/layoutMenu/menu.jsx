@@ -13,7 +13,7 @@ function Menu(props) {
           <li><a href="/login">Log In</a></li>
           <li><a href="/signup">Sign Up</a></li>
         </ul>
-        <a href="#" onClick={props.close} className="close">Close</a>
+        <a href="#" onClick={(event)=>{event.preventDefault(); props.close();}} className="close">Close</a>
       </div>
     </nav>
   )
