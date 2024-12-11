@@ -11,7 +11,7 @@ function Menu(props) {
           <li><a href="generic.html">Generic</a></li>
           <li><a href="elements.html">Elements</a></li>
           <li><a href="/login">Log In</a></li>
-          <li><a href="#">Sign Up</a></li>
+          <li><a href="/signup">Sign Up</a></li>
         </ul>
         <a href="#" onClick={props.close} className="close">Close</a>
       </div>
