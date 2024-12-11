@@ -26,46 +26,27 @@ export const FeatureParent = () => {
   }, []);
 
   return (
-    <>
-      
-
-        <section id="four" className="wrapper alt style1">
+  <section id="four" className="wrapper alt style1">
     <div className="inner">
-        <h2 className="major">Vitae phasellus</h2>
-        <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-        <section className="features">
+      <h2 className="major">Vitae phasellus</h2>
+      <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
+      <section className="features">
         {features.map((post, index) => (
-
-        <Feature
-          key={post.id}
-          index={index}
-          title={post.post.title}
-          content={post.post.short_description}
-          img_url={post.post.thumbnail_img}
-        />
-        </section>
-        <ul className="actions">
+          <Feature
+            key={post.id}
+            index={index}
+            title={post.post.title}
+            content={post.post.short_description}
+            img_url={post.post.thumbnail_img}
+          />        
+        ))}
+      </section>
+      <ul className="actions">
             <li><a href="#" className="button">Browse All</a></li>
-        </ul>
+      </ul>
     </div>
-</section>
-      ))}
-    </>
+  </section>
   );
 };
 
 export default FeatureParent;
-
-
-<section id="four" className="wrapper alt style1">
-    <div className="inner">
-        <h2 className="major">Vitae phasellus</h2>
-        <p>Cras mattis ante fermentum, malesuada neque vitae, eleifend erat. Phasellus non pulvinar erat. Fusce tincidunt, nisl eget mattis egestas, purus ipsum consequat orci, sit amet lobortis lorem lacus in tellus. Sed ac elementum arcu. Quisque placerat auctor laoreet.</p>
-        <section className="features">
-            {/* insert here */}
-        </section>
-        <ul className="actions">
-            <li><a href="#" className="button">Browse All</a></li>
-        </ul>
-    </div>
-</section>
