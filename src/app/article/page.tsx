@@ -6,6 +6,8 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation, Pagination } from 'swiper/modules'
 
 import { images } from '../../../lib/images'
+import Footer from '../../components/footer/footer'
+import Editor from '../../components/editor/editor'
 
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -33,6 +35,7 @@ function page() {
             </SwiperSlide>
           ))}
         </Swiper>
+        <Footer></Footer>
     </div>
   )
 }

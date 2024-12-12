@@ -2,14 +2,14 @@ import React from 'react'
 
 function page() {
   return (
-    <section id="footer">
+    <section id="form">
     <div className="inner">
       <h2 className="major">Sign up</h2>
       <form method="post" action="#">
         <div className="fields">
           <div className="field">
-            <label htmlFor="nickname">Nickname</label>
-            <input type="text" name="nickname" id="nickname" />
+            <label htmlFor="name">Name</label>
+            <input type="text" name="name" id="name" />
           </div>
           <div className="field">
             <label htmlFor="email">Email</label>

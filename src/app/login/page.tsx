@@ -2,7 +2,7 @@ import React from 'react'
 
 function page() {
   return (
-    <section id="footer">
+    <section id="form">
     <div className="inner">
       <h2 className="major">Login</h2>
       <form method="post" action="#">
@@ -17,8 +17,6 @@ function page() {
           </div>
         </div>
         <a href="#">Forgot password?</a>
-        <br></br>
-        <a href="/signup">Sign up</a>
         <ul className="actions">
           <li><input type="submit" value="Login" /></li>
         </ul>
