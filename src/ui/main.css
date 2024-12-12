@@ -3070,6 +3070,15 @@ input, select, textarea {
 
 		}
 
+/* Swiper */
+
+	.swiper {
+		margin-top: 100px;
+		height: 450px;
+		width: 600px;
+		border-radius: 1em;
+	}
+
 /* Header */
 
 	#header {
