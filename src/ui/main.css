@@ -3997,10 +3997,16 @@ input, select, textarea {
 		width: 500px;
 		position: relative;
 	}
-
+	  
 		.searchbar-wrapper {
 			position: relative;
 		}
+
+			.searchbar-wrapper input[type="search"]::-webkit-search-cancel-button {
+				-webkit-appearance: none;
+				appearance: none;
+				display: none;
+			}
 
 			.search-input {
 				width: 100%;
