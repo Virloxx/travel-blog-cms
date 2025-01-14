@@ -8,6 +8,7 @@ function Menu(props) {
         <h2>Menu</h2>
         <ul className="links">
           <li><a href="/">Home</a></li>
+          <li><a href="/search">Search</a></li>
           <li><a href="generic.html">Generic</a></li>
           <li><a href="elements.html">Elements</a></li>
           <li><a href="/login">Log In</a></li>
