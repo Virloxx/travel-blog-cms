@@ -9,19 +9,19 @@ function page() {
         <div className="fields">
           <div className="field">
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name" />
+            <input type="text" name="name" id="name" required/>
           </div>
           <div className="field">
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email" id="email" required/>
           </div>
           <div className="field">
             <label htmlFor="password">Password</label>
-            <input type="password" name="password" id="password" />
+            <input type="password" name="password" id="password" required/>
           </div>
           <div className="field">
             <label htmlFor="password2">Repeat password</label>
-            <input type="password" name="password2" id="password2" />
+            <input type="password" name="password2" id="password2" required/>
           </div>
         </div>
         <ul className="actions">
