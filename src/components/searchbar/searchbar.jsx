@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { HiOutlineSearch } from "react-icons/hi";
-import { words } from '../../../lib/data'
 
 const Searchbar = () => {
 
@@ -23,8 +22,8 @@ const Searchbar = () => {
             setActiveSearch([])
             return false
         }
-        const posty = features.map((post, index) => (post.post.title))
-        setActiveSearch(posty.filter(w => w.includes(e.target.value)).slice(0,3))
+        const posty = features.map((post, index) => post.post.title)
+        setActiveSearch(posty.filter(w => w.toLowerCase().includes(e.target.value.toLowerCase())).slice(0,3))
     }
 
     return (
@@ -37,15 +36,15 @@ const Searchbar = () => {
             </div>
 
             {
-            activeSearch.length > 0 && (
-                <div className="active-search">
-                    {
-                        activeSearch.map(s => (
-                            <span>{s}</span>
-                        ))
-                    }
-                </div>
-            )
+                activeSearch.length > 0 && (
+                    <div className="active-search">
+                        {
+                            activeSearch.map(s => (
+                                <a href="#" className="search-result">{s}</a>
+                            ))
+                        }
+                    </div>
+                )
             } 
         </form>
     );
