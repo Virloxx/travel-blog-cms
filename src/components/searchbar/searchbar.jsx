@@ -23,7 +23,8 @@ const Searchbar = () => {
             setActiveSearch([])
             return false
         }
-        setActiveSearch(words.filter(w => w.includes(e.target.value)).slice(0,3))
+        const posty = features.map((post, index) => (post.post.title))
+        setActiveSearch(posty.filter(w => w.includes(e.target.value)).slice(0,3))
     }
 
     return (
