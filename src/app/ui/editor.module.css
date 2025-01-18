@@ -13,8 +13,8 @@
         background-color: black;
       }
   
-      &.is-active {
-        background-color: blue;
+      &.isactive {
+        background-color: darkslategray;
   
         &:hover {
           background-color: aqua;

@@ -17,35 +17,37 @@ const Tiptap = () => {
 
   return (
     <>
-        <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
+        {editor && <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
             <div className={styles.bubblemenu}>
                 <button
                     onClick={() => editor.chain().focus().toggleBold().run()}
+                    className={editor.isActive('bold') ? styles.isactive : ""}
                 >
                     B
                 </button>
                 <button
                     onClick={() => editor.chain().focus().toggleItalic().run()}
-                    // className={editor.isActive('italic') ? 'is-active' : ''}
+                    className={editor.isActive('italic') ? styles.isactive : ""}
                 >
                     I
                 </button>
                 <button
                     onClick={() => editor.chain().focus().toggleStrike().run()}
-                    // className={editor.isActive('strike') ? 'is-active' : ''}
+                    className={editor.isActive('strike') ? styles.isactive : ""}
                 >
                     -s-
                 </button>
                 <button
                     onClick={() => editor.chain().focus().toggleBlockquote().run()}
-                    // className={editor.isActive('strike') ? 'is-active' : ''}
+                    className={editor.isActive('blockquote') ? styles.isactive : ""}
                 >
-                    -s-
+                    " "
                 </button>
             </div>
         </BubbleMenu>
+}
         <EditorContent editor={editor} />
-  </>
+        </>
   )
   
   
