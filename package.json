@@ -9,13 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@editorjs/editorjs": "^2.30.7",
     "@prisma/client": "^6.0.1",
-    "dotenv": "^16.4.5",
+    "@tiptap/extension-bubble-menu": "^2.11.2",
+    "@tiptap/pm": "^2.11.2",
+    "@tiptap/react": "^2.11.2",
+    "@tiptap/starter-kit": "^2.11.2",
     "next": "15.0.3",
     "prisma": "^6.0.1",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-icons": "^5.4.0",
     "sqlite3": "^5.1.7",
     "swiper": "^11.1.15"
