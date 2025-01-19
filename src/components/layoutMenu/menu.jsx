@@ -9,8 +9,6 @@ function Menu(props) {
         <ul className="links">
           <li><a href="/">Home</a></li>
           <li><a href="/search">Search</a></li>
-          <li><a href="generic.html">Generic</a></li>
-          <li><a href="elements.html">Elements</a></li>
           <li><a href="/login">Log In</a></li>
           <li><a href="/signup">Sign Up</a></li>
         </ul>
