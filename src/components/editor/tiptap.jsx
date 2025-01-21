@@ -3,8 +3,37 @@
 import { useEditor, EditorContent, BubbleMenu } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import styles from '../../app/ui/editor.module.css';
+import { useState, useEffect } from 'react';
 
-const Tiptap = () => {
+
+const Tiptap = ({postId}) => {
+  const [title, setTitle] = useState('Enter title here...');
+  const [desc, setDesc] = useState('Enter description here...');
+  const [content, setContent] = useState('Start typing here...');
+
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
+  useEffect(() => {
+      if (postId !== 'new') return;
+  
+      async function fetchPost() {
+        try {
+          const response = await fetch(`/api/posts_api/${slug}`);
+          if (!response.ok) throw new Error('Failed to fetch post');
+          const data = await response.json();
+          setPost(data);
+        } catch (err) {
+          setError(err.message);
+        } finally {
+          setLoading(false);
+        }
+      }
+  
+      fetchPost();
+  }, [postId]);
+  
+
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -13,7 +42,7 @@ const Tiptap = () => {
         },
       }),
     ],
-    content: '<p>Hello World! 🌎️</p>', // Initial content
+    content: content,
   });
 
   // Save content as HTML
@@ -53,38 +82,44 @@ const Tiptap = () => {
   return (
     <>
       {editor && (
-        <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
-          <div className={styles.bubblemenu}>
-            <button
-              onClick={() => editor.chain().focus().toggleBold().run()}
-              className={editor.isActive('bold') ? styles.isactive : ''}
-            >
-              B
-            </button>
-            <button
-              onClick={() => editor.chain().focus().toggleItalic().run()}
-              className={editor.isActive('italic') ? styles.isactive : ''}
-            >
-              I
-            </button>
-            <button
-              onClick={() => editor.chain().focus().toggleStrike().run()}
-              className={editor.isActive('strike') ? styles.isactive : ''}
-            >
-              -s-
-            </button>
-            <button
-              onClick={() => editor.chain().focus().toggleBlockquote().run()}
-              className={editor.isActive('blockquote') ? styles.isactive : ''}
-            >
-              " "
-            </button>
-          </div>
-        </BubbleMenu>
+        <>
+            <h2>Post title<textarea  style={{resize: "none"}} name="title" id="post_title">{title}</textarea></h2>
+        
+            <h2>Short description<textarea  style={{resize: "none"}} name="title" id="post_desc">{desc}</textarea></h2>
+        
+          <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
+            <div className={styles.bubblemenu}>
+              <button
+                onClick={() => editor.chain().focus().toggleBold().run()}
+                className={editor.isActive('bold') ? styles.isactive : ''}
+              >
+                B
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleItalic().run()}
+                className={editor.isActive('italic') ? styles.isactive : ''}
+              >
+                I
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleStrike().run()}
+                className={editor.isActive('strike') ? styles.isactive : ''}
+              >
+                -s-
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleBlockquote().run()}
+                className={editor.isActive('blockquote') ? styles.isactive : ''}
+              >
+                " "
+              </button>
+            </div>
+          </BubbleMenu>
+        </>
       )}
       <EditorContent editor={editor} />
       <button onClick={savePostAsHTML} className={styles.saveButton}>
-        Save as HTML
+        Save Post
       </button>
     </>
   );

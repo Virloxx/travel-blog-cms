@@ -4,18 +4,18 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function SinglePostPage() {
-  const { id } = useParams();
+  const { slug } = useParams();
 
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!id) return;
+    if (!slug) return;
 
     async function fetchPost() {
       try {
-        const response = await fetch(`/api/posts/${id}`);
+        const response = await fetch(`/api/posts_api/${slug}`);
         if (!response.ok) throw new Error('Failed to fetch post');
         const data = await response.json();
         setPost(data);
@@ -27,7 +27,7 @@ export default function SinglePostPage() {
     }
 
     fetchPost();
-  }, [id]);
+  }, [slug]);
 
   if (loading) return <p>Loading post...</p>;
   if (error) return <p>Error: {error}</p>;
@@ -44,7 +44,6 @@ export default function SinglePostPage() {
 
       <div className="wrapper">
         <div className="inner">
-          
           <div className="box alt">
               <div className="row gtr-uniform">
                 <div className="col-12"><span className="image fit"><img src={post.thumbnail_img} alt={post.title} /></span></div>
