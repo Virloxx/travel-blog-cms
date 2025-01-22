@@ -30,3 +30,25 @@ model Post {
   edited_at         DateTime
   Spotlight         Spotlight?  //needed for some prisma reason
 }
+
+model User {
+  id           Int      @id @default(autoincrement())
+  login        String   @unique
+  passwordHash String   @map("password_hash")
+  userInfo     UserInfo?
+
+  @@map("User")
+}
+
+model UserInfo {
+  id            Int      @id
+  name          String
+  createdAt     DateTime @default(now()) @map("created_at")
+  editedAt      DateTime? @map("edited_at")
+  isAdmin       Boolean  @default(false) @map("is_admin")
+  profilePicUrl String?  @map("profile_pic_url")
+
+  user          User     @relation(fields: [id], references: [id])
+
+  @@map("User_info")
+}
