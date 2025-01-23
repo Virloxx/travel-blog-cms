@@ -1,6 +1,7 @@
 'use client'
 import Tiptap from '@/components/editor/tiptap';
 import { useParams } from 'next/navigation';
+import React, { useEffect, useRef } from 'react';
 
 export default function EditorPage() {
   const { slug } = useParams();
@@ -12,7 +13,7 @@ export default function EditorPage() {
         <div className="inner">
           <section>
             <h1>POST EDITOR</h1>
-            <Tiptap postId={slug} />
+            <Tiptap className={"smellyhack"} postId={slug} />
           </section>
         </div>
       </div>
