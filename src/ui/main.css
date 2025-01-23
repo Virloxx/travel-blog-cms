@@ -3084,6 +3084,62 @@ input, select, textarea {
 		border-radius: 1em;
 	}
 
+
+/* Dashboard */
+
+	.dashboard-container {
+		display: flex;
+		flex-direction: row;
+		min-height: 100vh;
+		margin-top: 3.5em;
+	}
+	
+	.dashboard-sidebar {
+		flex: 1;
+		background-color: #1b1b1b;
+		padding: 20px;
+		color: #fff;
+	}
+	
+	.dashboard-sidebar h2 {
+		margin-bottom: 20px;
+		font-size: 1.5rem;
+	}
+	
+	.button-container {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	
+	.dashboard-sidebar .button {
+		width: 100%;
+	}
+	
+	.dashboard-content {
+		flex: 3;
+		padding: 20px;
+	}
+	
+	.dashboard-content header {
+		margin-bottom: 20px;
+	}
+	
+	.content-box {
+		margin-bottom: 20px;
+	}
+	
+	.content-box h3 {
+		font-size: 1.25rem;
+		margin-bottom: 10px;
+	}
+	
+	.content-box p {
+		font-size: 1rem;
+		line-height: 1.5;
+	}
+  
+
 /* Header */
 
 	#header {
