@@ -1,23 +1,24 @@
 .bubblemenu {
-    background-color: gray;
-    border: 1px solid gray;
+    background-color: #1e293b;
+    border: 1px solid #1e293b;
     border-radius: 0.7rem;
     box-shadow: gainsboro;
     display: flex;
     padding: 0;
+    font-size: 13px;
   
     button {
       background-color: unset;
   
       &:hover {
-        background-color: black;
+        background-color: #0f1628;
       }
   
       &.isactive {
-        background-color: darkslategray;
+        background-color: #284f93;
   
         &:hover {
-          background-color: aqua;
+          background-color: #284f93;
         }
       }
     }
