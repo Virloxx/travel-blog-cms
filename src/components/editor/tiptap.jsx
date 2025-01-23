@@ -5,34 +5,38 @@ import StarterKit from '@tiptap/starter-kit';
 import styles from '../../app/ui/editor.module.css';
 import { useState, useEffect } from 'react';
 
-
-const Tiptap = ({postId}) => {
+const Tiptap = ({ postId }) => {
   const [title, setTitle] = useState('Enter title here...');
   const [desc, setDesc] = useState('Enter description here...');
   const [content, setContent] = useState('Start typing here...');
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
+  // Fetch post data if postId is not "new"
   useEffect(() => {
-      if (postId !== 'new') return;
-  
-      async function fetchPost() {
-        try {
-          const response = await fetch(`/api/posts_api/${slug}`);
-          if (!response.ok) throw new Error('Failed to fetch post');
-          const data = await response.json();
-          setPost(data);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setLoading(false);
-        }
+    const fetchPost = async () => {
+      if (postId === 'new') {
+        setLoading(false);
+        return; // If it's a new post, use sample text
       }
-  
-      fetchPost();
+
+      try {
+        setLoading(true);
+        const response = await fetch(`/api/posts_api/${postId}`);
+        if (!response.ok) throw new Error('Failed to fetch post');
+        const data = await response.json();
+        setTitle(data.title || '');
+        setDesc(data.short_description || '');
+        setContent(data.content || '');
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
   }, [postId]);
-  
 
   const editor = useEditor({
     extensions: [
@@ -49,44 +53,64 @@ const Tiptap = ({postId}) => {
   const savePostAsHTML = async () => {
     if (!editor) return;
 
-    const contentHTML = editor.getHTML(); // Get the editor's content as HTML
-    console.log('Saving the following HTML:', contentHTML);
+    const contentHTML = editor.getHTML();
+    const isUpdating = postId !== 'new';
 
-    // Make an API call to save the HTML content
     try {
-      const response = await fetch('/api/post_create', {
-        method: 'POST',
+      const response = await fetch(`/api/posts_api/${isUpdating ? postId : ''}`, {
+        method: isUpdating ? 'PUT' : 'POST', // Use PUT for updating, POST for creating
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          title: 'My Post Title', // Replace with dynamic input if needed
-          thumbnail_img: 'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Replace with dynamic URL if needed
-          short_description: 'Short description here', // Replace with dynamic input if needed
-          content: contentHTML, // Save the content as HTML
+          title,
+          thumbnail_img: 'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          short_description: desc,
+          content: contentHTML,
         }),
       });
 
       const data = await response.json();
       if (response.ok) {
-        alert('Post saved successfully!');
-        console.log('Post created:', data.post);
+        alert(isUpdating ? 'Post updated successfully!' : 'Post saved successfully!');
+        console.log(isUpdating ? 'Post updated:' : 'Post created:', data.post);
       } else {
-        console.error('Error saving post:', data.error);
-        alert('Failed to save the post!');
+        console.error('Error saving/updating post:', data.error);
+        alert('Failed to save or update the post!');
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred while saving the post.');
+      alert('An error occurred while saving/updating the post.');
     }
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <>
       {editor && (
         <>
-            <h2>Post title<textarea  style={{resize: "none"}} name="title" id="post_title">{title}</textarea></h2>
-        
-            <h2>Short description<textarea  style={{resize: "none"}} name="title" id="post_desc">{desc}</textarea></h2>
-        
+          <h2>
+            Post title
+            <textarea
+              style={{ resize: 'none' }}
+              name="title"
+              id="post_title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+          </h2>
+
+          <h2>
+            Short description
+            <textarea
+              style={{ resize: 'none' }}
+              name="desc"
+              id="post_desc"
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
+            />
+          </h2>
+
           <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
             <div className={styles.bubblemenu}>
               <button
@@ -119,7 +143,7 @@ const Tiptap = ({postId}) => {
       )}
       <EditorContent editor={editor} />
       <button onClick={savePostAsHTML} className={styles.saveButton}>
-        Save Post
+        {postId === 'new' ? 'Create Post' : 'Update Post'}
       </button>
     </>
   );
