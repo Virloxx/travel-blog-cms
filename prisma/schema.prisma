@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
@@ -16,19 +13,34 @@ generator client {
 // Add to diagram
 model Spotlight {
   id      Int  @id @default(autoincrement())
-  post_id Int  @unique
-  post    Post @relation(fields: [post_id], references: [id])
+  postId  Int  @unique
+  post    Post @relation(fields: [postId], references: [id])
+}
+
+model Features {
+  id      Int  @id @default(autoincrement())
+  postId  Int  @unique
+  post    Post @relation(fields: [postId], references: [id])
+}
+
+model Misc_Info {
+  id    Int    @id @default(autoincrement())
+  key   String
+  value String
 }
 
 model Post {
   id                Int         @id @default(autoincrement())
   title             String
   thumbnail_img     String
-  short_description String //Add to diagram
+  short_description String // Add to diagram
   content           String
   created_at        DateTime
   edited_at         DateTime
-  Spotlight         Spotlight?  //needed for some prisma reason
+  Spotlight         Spotlight?  // Relation to Spotlight
+  Features          Features?   // Relation to Features
+  tags              Tag[]       @relation("PostTags")
+  comments          Comment[]   // Relation to comments
 }
 
 model User {
@@ -36,6 +48,7 @@ model User {
   login        String   @unique
   passwordHash String   @map("password_hash")
   userInfo     UserInfo?
+  comments     Comment[] // Relation to comments
 
   @@map("User")
 }
@@ -51,4 +64,26 @@ model UserInfo {
   user          User     @relation(fields: [id], references: [id])
 
   @@map("User_info")
+}
+
+model Tag {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  posts Post[] @relation("PostTags")
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  rootId    Int?     // ID of the first comment in the discussion thread (null for the first comment)
+  userId    Int      // ID of the User who posted the comment
+  postId    Int      // ID of the Post under which the comment was posted
+  createdAt DateTime @default(now())
+  editedAt  DateTime?
+  content   String
+
+  user      User     @relation(fields: [userId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id])
+
+  @@index([postId])
+  @@index([userId])
 }

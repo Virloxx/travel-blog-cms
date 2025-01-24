@@ -4,42 +4,23 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-  const { id } = req.query;
-
-  if (req.method === 'GET') {
-    // Fetch post by ID
-    try {
-      const post = await prisma.post.findUnique({
-        where: { id: parseInt(id, 10) }, // Ensure the ID is an integer
-      });
-
-      if (!post) {
-        return res.status(404).json({ error: 'Post not found' });
-      }
-
-      res.status(200).json(post);
-    } catch (error) {
-      console.error('Error fetching post:', error);
-      res.status(500).json({ error: 'Failed to fetch the post' });
-    }
-  } 
-  
-  else if (req.method === 'PUT') {
+  if (req.method === 'PUT') {
     // Update post by ID
     try {
-      const { title, thumbnail_img, short_description, content } = req.body;
+      const { ids, title, thumbnail_img, short_description, content } = req.body;
       
       // Validate the request body
-      if (!title || !short_description || !content) {
+      if (!title || !short_description || !content || !ids) {
         return res.status(400).json({ error: 'Missing required fields' });
       }
-
+      //thumbnail_img = thumbnail_img ? thumbnail_img : "";  
+      
       const updatedPost = await prisma.post.update({
-        where: { id: id },
+        where: { id: ids },
         data: {
           title,
-          thumbnail_img,
           short_description,
+          thumbnail_img,
           content,
           updatedAt: new Date(), // Optionally update a timestamp field
         },

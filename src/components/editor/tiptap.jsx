@@ -17,7 +17,7 @@ const Tiptap = ({ postId }) => {
     const fetchPost = async () => {
       if (postId === 'new') {
         setLoading(false);
-        return; // If it's a new post, use sample text
+        return;
       }
 
       try {
@@ -54,18 +54,24 @@ const Tiptap = ({ postId }) => {
     if (!editor) return;
 
     const contentHTML = editor.getHTML();
+    console.log(contentHTML);
     const isUpdating = postId !== 'new';
 
+    const save_url = `/api/posts_api/${postId}`
+    const save_method = isUpdating ? 'PUT' : 'POST'
+
     try {
-      const response = await fetch(`/api/posts_api/${isUpdating ? postId : ''}`, {
-        method: isUpdating ? 'PUT' : 'POST', // Use PUT for updating, POST for creating
+      
+      const response = await fetch(save_url, 
+      {
+        method: save_method, // Correctly format method
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          title,
+          title: title,
           thumbnail_img: 'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           short_description: desc,
           content: contentHTML,
-        }),
+        })
       });
 
       const data = await response.json();
