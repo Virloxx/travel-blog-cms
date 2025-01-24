@@ -1,70 +1,84 @@
-import { PrismaClient } from "@prisma/client";
+'use client'
 
-const prisma = new PrismaClient();
+import React, { useState } from 'react';
+import ManagePosts from '../../components/dashboardComponents/managePosts/managePosts';
+import ManageBanner from '../../components/dashboardComponents/manageBanner/manageBanner';
+import ManageFeatures from '../../components/dashboardComponents/manageFeatures/manageFeatures';
+import ManageMiscInfo from '../../components/dashboardComponents/manageMiscInfo/manageMiscInfo';
+import ManageSpotlights from '../../components/dashboardComponents/manageSpotlights/manageSpotlights';
+import ManageUsers from '../../components/dashboardComponents/manageUsers/manageUsers';
 
-async function fetchPosts() {
-  const posts = await prisma.post.findMany({
-    orderBy: { created_at: "desc" },
-  });
-  return posts;
-}
+function DashboardPage() {
+  const [activeSection, setActiveSection] = useState('posts');
 
-export default async function ManagePostsPage() {
-  const posts = await fetchPosts();
+  const renderContent = () => {
+    switch (activeSection) {
+      case 'posts':
+        return (
+          <div>
+            <ManagePosts />
+          </div>
+        );
+      case 'users':
+        return (
+          <div>
+            <ManageUsers />
+          </div>
+        );
+      case 'spotlights':
+        return (
+          <div>
+            <ManageSpotlights />
+          </div>
+        );
+      case 'features':
+        return (
+          <div>
+            <ManageFeatures />
+          </div>
+        );
+      case 'banner':
+        return (
+          <div>
+            <ManageBanner />
+          </div>
+        );
+      case 'misc':
+        return (
+          <div>
+            <ManageMiscInfo />
+          </div>
+        );
+      default:
+        return <p>Select a section to manage.</p>;
+    }
+  };
 
   return (
-    <div className="dashboard-container">
-      {/* Sidebar */}
-      <aside className="dashboard-sidebar">
+    <div id="page-wrapper" className="dashboard-container">
+      <div className="dashboard-sidebar">
         <div className="button-container">
-          <button className="button primary fit">MANAGE POSTS</button>
-          <button className="button primary fit">MANAGE USERS</button>
-          <button className="button primary fit">MANAGE SPOTLIGHTS</button>
-          <button className="button primary fit">MANAGE FEATURES</button>
-          <button className="button primary fit">MANAGE BANNER</button>
-          <button className="button primary fit">MANAGE MISC. INFO</button>
+          <button className="button primary fit" onClick={() => setActiveSection('posts')}>MANAGE POSTS</button>
+          <button className="button primary fit" onClick={() => setActiveSection('users')}>MANAGE USERS</button>
+          <button className="button primary fit" onClick={() => setActiveSection('spotlights')}>MANAGE SPOTLIGHTS</button>
+          <button className="button primary fit" onClick={() => setActiveSection('features')}>MANAGE FEATURES</button>
+          <button className="button primary fit" onClick={() => setActiveSection('banner')}>MANAGE BANNER</button>
+          <button className="button primary fit" onClick={() => setActiveSection('misc')}>MANAGE MISC. INFO</button>
         </div>
-      </aside>
+      </div>
 
-      {/* Main Content */}
-      <main className="dashboard-content">
-        <h1>Manage Posts</h1>
-        <div className="table-container">
-          <table className="posts-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>Thumbnail</th>
-                <th>Short Description</th>
-                <th>Created At</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {posts.map((post) => (
-                <tr key={post.id}>
-                  <td>{post.id}</td>
-                  <td>{post.title}</td>
-                  <td>
-                    <img
-                      src={post.thumbnail_img}
-                      alt="Thumbnail"
-                      className="thumbnail"
-                    />
-                  </td>
-                  <td>{post.short_description}</td>
-                  <td>{new Date(post.created_at).toLocaleDateString()}</td>
-                  <td>
-                    <button className="edit-button">Edit</button>
-                    <button className="delete-button">Delete</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </main>
+      <div className="dashboard-content">
+        <header>
+          <div className="inner">
+            <h2>MANAGE {activeSection}</h2>
+          </div>
+        </header>
+        <section>
+          <div className="content-box">{renderContent()}</div>
+        </section>
+      </div>
     </div>
   );
 }
+
+export default DashboardPage;
