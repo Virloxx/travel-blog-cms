@@ -34,17 +34,17 @@ function managePosts() {
                         <td>{post.id}</td>
                         <td>{post.title}</td>
                         <td>
-                        <img
-                            src={post.thumbnail_img}
-                            alt="Thumbnail"
-                            className="thumbnail"
-                        />
+                            <img
+                                src={post.thumbnail_img}
+                                alt="Thumbnail"
+                                className="thumbnail"
+                            />
                         </td>
                         <td>{post.short_description}</td>
                         <td>{new Date(post.created_at).toLocaleDateString()}</td>
                         <td>
-                        <button className="edit-button">Edit</button>
-                        <button className="delete-button">Delete</button>
+                            <button className="button primary fit">Edit</button>
+                            <button className="button fit delete-button">Delete</button>
                         </td>
                     </tr>
                     ))}
