@@ -4389,3 +4389,9 @@ input, select, textarea {
 			padding: 2em 1.5em 0.1em 1.5em;
 		}
 	}
+
+	.posts-table img.thumbnail {
+		width: 30px;  /* Decrease the width */
+		height: 30px; /* Decrease the height */
+		object-fit: cover; /* Ensure image fits nicely in the box */
+	  }

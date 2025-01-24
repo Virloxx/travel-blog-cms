@@ -5,8 +5,8 @@ function Banner() {
     <section id="banner">
         <div className="inner">
             <div className="logo"><span className="icon fa-gem">🤡</span></div>
-            <h2>TO BE REPLACED WITH QUERY TO DB</h2>
-            <p>Banner subtitle + also from db link: <a href="https://en.wikipedia.org/wiki/Better_Call_Saul">SPOILERY</a></p>
+            <h2>Travel Blog</h2>
+            <p>Banner subtitle</p>
         </div>
 	</section>
   )
