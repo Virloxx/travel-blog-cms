@@ -6,7 +6,7 @@ function managePosts() {
         <section id="wrapper">
             <header>
                 <div className="inner">
-                    <h2>FIUT OSRANY</h2>
+                    <h2>MANAGE POSTS</h2>
                 </div>
             </header>
             <div className="wrapper">
