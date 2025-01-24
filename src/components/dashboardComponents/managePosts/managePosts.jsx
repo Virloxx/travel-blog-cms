@@ -43,7 +43,7 @@ function managePosts() {
                         <td>{post.short_description}</td>
                         <td>{new Date(post.created_at).toLocaleDateString()}</td>
                         <td>
-                            <button className="button primary fit">Edit</button>
+                            <a href={`/posts/${post.id}/edit`}><button className="button primary fit">Edit</button></a>
                             <button className="button fit delete-button">Delete</button>
                         </td>
                     </tr>
