@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 
 function managePosts() {
     const [posts, setPosts] = useState([])
@@ -24,7 +26,7 @@ function managePosts() {
                     <th>Thumbnail</th>
                     <th>Short Description</th>
                     <th>Created At</th>
-                    <th>Actions</th>
+                    <th className="th-actions">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,8 +44,14 @@ function managePosts() {
                         <td>{post.short_description}</td>
                         <td>{new Date(post.created_at).toLocaleDateString()}</td>
                         <td>
-                            <a href={`/posts/${post.id}/edit`}><button className="button primary fit">Edit</button></a>
-                            <button className="button fit delete-button">Delete</button>
+                            <a href={`/posts/${post.id}/edit`}>
+                                <button className="button primary fit edit-button">
+                                    <MdEdit />
+                                </button>
+                            </a>
+                            <button className="button fit delete-button">
+                                <MdDelete />
+                            </button>
                         </td>
                     </tr>
                     ))}

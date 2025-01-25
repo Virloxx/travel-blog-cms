@@ -44,7 +44,7 @@ function manageSpotlights() {
                         <td>{new Date(post.created_at).toLocaleDateString()}</td>
                         <td>
                             <select name="demo-category" id="demo-category">
-                              <option selected="selected" value="">-</option>
+                              <option defaultValue="selected" value="">-</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
                               <option value="3">3</option>

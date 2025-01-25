@@ -3090,6 +3090,16 @@ input, select, textarea {
 	.delete-button {
 		background-color: rgba(255, 0, 0, 0.215);
 		margin-top: 1em;
+		max-width: min-content;
+	}
+
+	.edit-button {
+		background-color: red;
+		max-width: min-content;
+	}
+
+	.th-actions {
+		max-width: 200px;
 	}
   
 	.delete-button:hover {
@@ -3130,6 +3140,18 @@ input, select, textarea {
 		margin-top: 8em;
 		flex: 1;
 		padding: 20px;
+	}
+
+	.posts-table img.thumbnail {
+		width: 30px;
+		height: 30px;
+		object-fit: cover;
+	  }
+
+	.users-table img.thumbnail {
+		width: 30px;
+		height: 30px;
+		object-fit: cover;
 	}
 
 
@@ -4386,9 +4408,3 @@ input, select, textarea {
 			padding: 2em 1.5em 0.1em 1.5em;
 		}
 	}
-
-	.posts-table img.thumbnail {
-		width: 30px;  /* Decrease the width */
-		height: 30px; /* Decrease the height */
-		object-fit: cover; /* Ensure image fits nicely in the box */
-	  }

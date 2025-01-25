@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { MdEdit } from "react-icons/md";
+import { MdDelete } from "react-icons/md";
 
 function manageUsers() {
     const [users, setUsers] = useState([])
@@ -26,7 +28,7 @@ function manageUsers() {
                     <th>Edited At</th>
                     <th>is Admin</th>
                     <th>Profile Pic</th>
-                    <th>Actions</th>
+                    <th className="th-actions">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -45,9 +47,15 @@ function manageUsers() {
                                 className="thumbnail"
                             />
                         </td>
-                        <td>
-                            <a href={`/users/${user.id}/edit`}><button className="button primary fit">Edit</button></a>
-                            <button className="button fit delete-button">Delete</button>
+                        <td className="action-buttons">
+                            <a href={`/users/${user.id}/edit`}>
+                              <button className="button primary fit edit-button">
+                                <MdEdit />
+                              </button>
+                            </a>
+                            <button className="button fit delete-button">
+                              <MdDelete />
+                            </button>
                         </td>
                     </tr>
                     ))}
