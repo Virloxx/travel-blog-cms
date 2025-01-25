@@ -174,7 +174,7 @@ input, select, textarea {
 		-webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-		border-bottom: dotted 1px rgba(255, 255, 255, 0.35);
+		/* border-bottom: dotted 1px rgba(255, 255, 255, 0.35); */
 		color: #ffffff;
 		text-decoration: none;
 	}
@@ -3096,6 +3096,7 @@ input, select, textarea {
 	.edit-button {
 		background-color: red;
 		max-width: min-content;
+		margin-right: 0.5em;
 	}
 
 	.th-actions {
