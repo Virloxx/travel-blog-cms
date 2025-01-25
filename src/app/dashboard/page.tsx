@@ -49,11 +49,11 @@ function DashboardPage() {
     <section id="page-wrapper">
       <div className="dashboard-sidebar">
         <div className="button-container">
-          <button className="button fit" onClick={() => setActiveSection('posts')}>MANAGE POSTS</button>
-          <button className="button fit" onClick={() => setActiveSection('users')}>MANAGE USERS</button>
-          <button className="button fit" onClick={() => setActiveSection('spotlights')}>MANAGE SPOTLIGHTS</button>
-          <button className="button fit" onClick={() => setActiveSection('features')}>MANAGE FEATURES</button>
-          <button className="button fit" onClick={() => setActiveSection('misc')}>MANAGE MISC. INFO</button>
+          <button onClick={() => setActiveSection('posts')}>MANAGE POSTS</button>
+          <button onClick={() => setActiveSection('users')}>MANAGE USERS</button>
+          <button onClick={() => setActiveSection('spotlights')}>MANAGE SPOTLIGHTS</button>
+          <button onClick={() => setActiveSection('features')}>MANAGE FEATURES</button>
+          <button onClick={() => setActiveSection('misc')}>MANAGE MISC. INFO</button>
         </div>
       </div>
 

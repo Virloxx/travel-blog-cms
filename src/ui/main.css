@@ -3099,7 +3099,12 @@ input, select, textarea {
 	.button-container {
 		display: flex;
 		justify-content: space-around;
-		gap: 1.5em;
+	}
+
+	.dashboard-sidebar .button-container button {
+		height: inherit;
+		box-shadow: none;
+		width: calc(100vw / 5);
 	}
 
 	.content-title {
@@ -3109,12 +3114,12 @@ input, select, textarea {
 
 	.dashboard-sidebar {
 		width: 100vw;
+		height: 60px;
 		display: flex;
 		justify-content: space-around;
 		flex-wrap: wrap;
 		border-top: 2px solid #4f5160;
 		background-color: #36394a;
-		padding: 10px 20px;
 		color: #fff;
 		gap: 2em;
 		position: fixed;		
