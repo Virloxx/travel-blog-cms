@@ -57,8 +57,15 @@ const Tiptap = ({ postId }) => {
     console.log(contentHTML);
     const isUpdating = postId !== 'new';
 
-    const save_url = `/api/posts_api/${postId}`
-    const save_method = isUpdating ? 'PUT' : 'POST'
+    if(isUpdating){
+      const save_url = '/api/posts_api/post_put';
+      const save_method = 'PUT';
+    }
+    else {
+      const save_url = `/api/posts_api/post_put`
+      const save_method = isUpdating ? 'PUT' : 'POST'
+    }
+
 
     try {
       
