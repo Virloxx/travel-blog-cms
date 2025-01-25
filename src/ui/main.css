@@ -3091,63 +3091,42 @@ input, select, textarea {
 		background-color: rgba(255, 0, 0, 0.215);
 		margin-top: 1em;
 	}
-
+  
 	.delete-button:hover {
-		background-color: rgba(255, 0, 0, 0.415);
+	background-color: rgba(255, 0, 0, 0.415);
 	}
 
-	.dashboard-container {
-		display: flex;
-		flex-direction: row;
-		min-height: 100vh;
-		margin-top: 3.5em;
-	}
-	
-	.dashboard-sidebar {
-		flex: 1;
-		background-color: #1b1b1b;
-		padding: 20px;
-		color: #fff;
-	}
-	
-	.dashboard-sidebar h2 {
-		margin-bottom: 20px;
-		font-size: 1.5rem;
-	}
-	
 	.button-container {
 		display: flex;
-		flex-direction: column;
-		gap: 10px;
+		justify-content: space-around;
+		gap: 1.5em;
 	}
-	
-	.dashboard-sidebar .button {
-		width: 100%;
+
+	.content-title {
+		margin-bottom: -6em;
+		margin-left: 1em;
 	}
-	
+
+	.dashboard-sidebar {
+		width: 100vw;
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		border-top: 2px solid #4f5160;
+		background-color: #36394a;
+		padding: 10px 20px;
+		color: #fff;
+		gap: 2em;
+		position: fixed;		
+		margin-top: -4.5em;
+	}
+
 	.dashboard-content {
-		flex: 3;
+		margin-top: 8em;
+		flex: 1;
 		padding: 20px;
 	}
-	
-	.dashboard-content header {
-		margin-bottom: 20px;
-	}
-	
-	.content-box {
-		margin-bottom: 20px;
-	}
-	
-	.content-box h3 {
-		font-size: 1.25rem;
-		margin-bottom: 10px;
-	}
-	
-	.content-box p {
-		font-size: 1rem;
-		line-height: 1.5;
-	}
-  
+
 
 /* Header */
 
@@ -4299,6 +4278,10 @@ input, select, textarea {
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+	}
+
+	#form .inner.post-editor {
+		min-width: 100%;
 	}
 
 	#form .inner > * {
