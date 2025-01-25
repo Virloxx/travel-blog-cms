@@ -3087,6 +3087,15 @@ input, select, textarea {
 
 /* Dashboard */
 
+	.delete-button {
+		background-color: rgba(255, 0, 0, 0.215);
+		margin-top: 1em;
+	}
+
+	.delete-button:hover {
+		background-color: rgba(255, 0, 0, 0.415);
+	}
+
 	.dashboard-container {
 		display: flex;
 		flex-direction: row;
