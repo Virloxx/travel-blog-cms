@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 
 export function Spotlight({ index, isAlt = false, title, content, img_url }) {
-  let normalClasses = "wrapper spotlight style1";
+  let normalClasses = `wrapper spotlight style${index}`;
 
   if (isAlt) {
-    normalClasses = "wrapper spotlight style1 alt";
+    normalClasses = `wrapper spotlight style${index} alt`;
   }
 
   return (
