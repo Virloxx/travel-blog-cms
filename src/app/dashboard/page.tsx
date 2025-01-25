@@ -14,33 +14,23 @@ function DashboardPage() {
     switch (activeSection) {
       case 'posts':
         return (
-          <div>
             <ManagePosts />
-          </div>
         );
       case 'users':
         return (
-          <div>
             <ManageUsers />
-          </div>
         );
       case 'spotlights':
         return (
-          <div>
             <ManageSpotlights />
-          </div>
         );
       case 'features':
         return (
-          <div>
             <ManageFeatures />
-          </div>
         );
       case 'misc':
         return (
-          <div>
             <ManageMiscInfo />
-          </div>
         );
     }
   };

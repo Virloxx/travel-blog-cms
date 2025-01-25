@@ -7,7 +7,6 @@ function managePosts() {
         async function getPosts() {
             const response = await fetch('/api/post_get')
             const json = await response.json()
-            console.log(json)
             setPosts(json)
         }
         getPosts()
