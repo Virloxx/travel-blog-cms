@@ -13,7 +13,7 @@ generator client {
 // Add to diagram
 model Spotlight {
   id      Int  @id @default(autoincrement())
-  postId  Int  @unique
+  postId  Int
   post    Post @relation(fields: [postId], references: [id])
 }
 
@@ -37,7 +37,7 @@ model Post {
   content           String
   created_at        DateTime
   edited_at         DateTime
-  Spotlight         Spotlight?  // Relation to Spotlight
+  Spotlight         Spotlight[]  // Relation to Spotlight
   Features          Features?   // Relation to Features
   tags              Tag[]       @relation("PostTags")
   comments          Comment[]   // Relation to comments
