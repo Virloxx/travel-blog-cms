@@ -12,6 +12,17 @@ const Tiptap = ({ postId }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const editor = useEditor({
+    extensions: [
+      StarterKit.configure({
+        heading: {
+          levels: [1, 2, 3],
+        },
+      }),
+    ],
+    content: content,
+  });
+
   // Fetch post data if postId is not "new"
   useEffect(() => {
     const fetchPost = async () => {
@@ -38,47 +49,34 @@ const Tiptap = ({ postId }) => {
     fetchPost();
   }, [postId]);
 
-  const editor = useEditor({
-    extensions: [
-      StarterKit.configure({
-        heading: {
-          levels: [1, 2, 3],
-        },
-      }),
-    ],
-    content: content,
-  });
+  // Update editor content when `content` state changes
+  useEffect(() => {
+    if (editor && content) {
+      editor.commands.setContent(content);
+    }
+  }, [editor, content]);
 
   // Save content as HTML
   const savePostAsHTML = async () => {
     if (!editor) return;
 
     const contentHTML = editor.getHTML();
-    console.log(contentHTML);
     const isUpdating = postId !== 'new';
 
-    if(isUpdating){
-      const save_url = '/api/posts_api/post_put';
-      const save_method = 'PUT';
-    }
-    else {
-      const save_url = `/api/posts_api/post_put`
-      const save_method = isUpdating ? 'PUT' : 'POST'
-    }
-
+    const saveUrl = isUpdating ? '/api/posts_api/post_put' : '/api/posts_api/post_create';
+    const saveMethod = isUpdating ? 'PUT' : 'POST';
 
     try {
-      
-      const response = await fetch(save_url, 
-      {
-        method: save_method, // Correctly format method
+      const response = await fetch(saveUrl, {
+        method: saveMethod,
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title: title,
-          thumbnail_img: 'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          thumbnail_img:
+            'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           short_description: desc,
           content: contentHTML,
-        })
+        }),
       });
 
       const data = await response.json();

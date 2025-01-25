@@ -10,7 +10,13 @@ export default async function handler(req, res) {
     // Fetch post by ID
     try {
       const post = await prisma.post.findUnique({
-        where: { id: parseInt(id, 10) }, // Ensure the ID is an integer
+        where: { id: parseInt(id, 10) },
+        select: {
+          title: true,
+          short_description: true,
+          content: true,
+          thumbnail_img: true
+        }
       });
 
       if (!post) {

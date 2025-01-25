@@ -7,26 +7,26 @@ export default async function handler(req, res) {
   if (req.method === 'PUT') {
     // Update post by ID
     try {
-      const { ids, title, thumbnail_img, short_description, content } = req.body;
+      const { id, title, thumbnail_img, short_description, content } = req.body;
       
       // Validate the request body
-      if (!title || !short_description || !content || !ids) {
+      if (!title || !short_description || !content || !id) {
         return res.status(400).json({ error: 'Missing required fields' });
       }
       //thumbnail_img = thumbnail_img ? thumbnail_img : "";  
       
       const updatedPost = await prisma.post.update({
-        where: { id: ids },
+        where: { id: id }, // Ensure `id` is valid and exists in the database
         data: {
-          title,
-          short_description,
-          thumbnail_img,
-          content,
-          updatedAt: new Date(), // Optionally update a timestamp field
+          title, // Mandatory
+          thumbnail_img, // Mandatory
+          short_description, // Mandatory
+          content, // Mandatory
+          edited_at: new Date(), // Update the `edited_at` field
         },
       });
       
-      res.status(200).json({ post: updatedPost });
+      res.status(200).json(updatedPost);
     } catch (error) {
       console.error('Error updating post:', error);
 
