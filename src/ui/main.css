@@ -3474,6 +3474,14 @@ input, select, textarea {
 		#banner .inner {
 			margin: 0 auto;
 			width: 55em;
+			display: flex;
+			gap: 2em;
+		}
+
+		#banner .inner img {
+			border-radius: 2em;
+			height: auto;
+			width: 50%;
 		}
 
 		#banner .logo {
