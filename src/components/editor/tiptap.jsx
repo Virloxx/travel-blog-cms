@@ -66,17 +66,32 @@ const Tiptap = ({ postId }) => {
     const saveUrl = isUpdating ? '/api/posts_api/post_put' : '/api/posts_api/post_create';
     const saveMethod = isUpdating ? 'PUT' : 'POST';
 
-    try {
-      const response = await fetch(saveUrl, {
-        method: saveMethod,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          title: title,
+    let toSend = "";
+    if(isUpdating){
+      toSend = {
+        title: title,
           thumbnail_img:
             'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
           short_description: desc,
           content: contentHTML,
-        }),
+          id: parseInt(postId)
+      }
+    }
+    else{
+      toSend = {
+        title: title,
+          thumbnail_img:
+            'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          short_description: desc,
+          content: contentHTML
+      }
+    }
+
+    try {
+      const response = await fetch(saveUrl, {
+        method: saveMethod,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(toSend),
       });
 
       const data = await response.json();
