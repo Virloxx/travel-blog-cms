@@ -4141,9 +4141,10 @@ input, select, textarea {
 			gap: 0.5rem;
 		}
 
-			#form .searchbar-container .active-search a {
-				margin: 0.1em;
-			}
+		#form .searchbar-container .active-search a {
+			margin: 0.1em;
+			cursor: pointer;
+		}
 
 
 /* Footer */
