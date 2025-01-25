@@ -9,7 +9,7 @@ export default function Home() {
     <>
     <Banner></Banner>
     <SpotlightParent ></SpotlightParent>
-    <FeatureParent></FeatureParent>
+    {/* <FeatureParent></FeatureParent> */}
     <Posts></Posts>
     <Footer></Footer>
     </>

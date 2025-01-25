@@ -27,7 +27,7 @@ export const SpotlightParent = () => {
 
   useEffect(() => {
     async function fetchSpotlights() {
-      const response = await fetch('/api/post');
+      const response = await fetch('/api/post_get');
       const data = await response.json();
       setSpotlights(data);
     }
@@ -42,9 +42,9 @@ export const SpotlightParent = () => {
           key={post.id}
           index={index}
           isAlt={index % 2 !== 0}
-          title={post.post.title}
-          content={post.post.short_description}
-          img_url={post.post.thumbnail_img}
+          title={post.title}
+          content={post.short_description}
+          img_url={post.thumbnail_img}
         />
       ))}
     </>
