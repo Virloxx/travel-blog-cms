@@ -3,6 +3,13 @@ import React, { useState, useEffect } from 'react'
 function manageSpotlights() {
     const [posts, setPosts] = useState([])
 
+    const [selectedValue, setSelectedValue] = useState("");
+
+    const handleChange = (event, postId) => {
+        const post_id = postId;
+        const spotlight_id = event.target.value;
+    };
+
     useEffect(() => {
         async function getPosts() {
             const response = await fetch('/api/post_get')
@@ -43,7 +50,7 @@ function manageSpotlights() {
                         <td>{post.short_description}</td>
                         <td>{new Date(post.created_at).toLocaleDateString()}</td>
                         <td>
-                            <select name="demo-category" id="demo-category">
+                            <select onChange={(event) => handleChange(event, post.id)} name="demo-category" id="demo-category">
                               <option defaultValue="selected" value="">-</option>
                               <option value="1">1</option>
                               <option value="2">2</option>
