@@ -39,20 +39,34 @@ function DashboardPage() {
     <section id="page-wrapper">
       <div className="dashboard-sidebar">
         <div className="button-container">
-          <button onClick={() => setActiveSection('posts')}>MANAGE POSTS</button>
-          <button onClick={() => setActiveSection('users')}>MANAGE USERS</button>
-          <button onClick={() => setActiveSection('spotlights')}>MANAGE SPOTLIGHTS</button>
-          <button onClick={() => setActiveSection('features')}>MANAGE FEATURES</button>
-          <button onClick={() => setActiveSection('misc')}>MANAGE MISC. INFO</button>
+          <button 
+            className={activeSection === 'posts' ? 'active' : ''} 
+            onClick={() => setActiveSection('posts')}>
+              MANAGE POSTS
+            </button>
+          <button 
+            className={activeSection === 'users' ? 'active' : ''} 
+            onClick={() => setActiveSection('users')}>
+              MANAGE USERS
+            </button>
+          <button 
+            className={activeSection === 'spotlights' ? 'active' : ''} 
+            onClick={() => setActiveSection('spotlights')}>
+              MANAGE SPOTLIGHTS
+            </button>
+          <button 
+            className={activeSection === 'features' ? 'active' : ''} 
+            onClick={() => setActiveSection('features')}>
+              MANAGE FEATURES
+            </button>
+          <button 
+            className={activeSection === 'misc' ? 'active' : ''} 
+            onClick={() => setActiveSection('misc')}>
+              MANAGE MISC. INFO
+            </button>
         </div>
       </div>
-
       <div className="dashboard-content">
-        <header>
-          <div className="inner content-title">
-            <h2>MANAGE {activeSection}</h2>
-          </div>
-        </header>
         <section>
           <div className="content-box">{renderContent()}</div>
         </section>

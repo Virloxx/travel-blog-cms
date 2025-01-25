@@ -3112,6 +3112,10 @@ input, select, textarea {
 		justify-content: space-around;
 	}
 
+	.button-container button.active {
+		background-color: #4b4e63;
+	  }
+
 	.dashboard-sidebar .button-container button {
 		height: inherit;
 		box-shadow: none;
@@ -3134,11 +3138,10 @@ input, select, textarea {
 		color: #fff;
 		gap: 2em;
 		position: fixed;		
-		margin-top: -4.5em;
 	}
 
 	.dashboard-content {
-		margin-top: 8em;
+		margin-top: 3.5em;
 		flex: 1;
 		padding: 20px;
 	}
