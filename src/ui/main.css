@@ -4325,6 +4325,10 @@ input, select, textarea {
 		min-width: 100%;
 	}
 
+	.edit-page {
+		padding: 100px 80px;
+	}
+
 	#form .inner > * {
 		width: 100%;
 	}
