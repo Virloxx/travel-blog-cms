@@ -2,10 +2,10 @@
 import React, { useEffect, useState } from 'react';
 
 export function Spotlight({ index, isAlt = false, title, content, img_url }) {
-  let normalClasses = `wrapper spotlight style${index}`;
+  let normalClasses = `wrapper spotlight style${index+1}`;
 
   if (isAlt) {
-    normalClasses = `wrapper spotlight style${index} alt`;
+    normalClasses = `wrapper spotlight style${index+1} alt`;
   }
 
   return (
@@ -27,7 +27,7 @@ export const SpotlightParent = () => {
 
   useEffect(() => {
     async function fetchSpotlights() {
-      const response = await fetch('/api/post_get');
+      const response = await fetch('/api/post_spot_get');
       const data = await response.json();
       setSpotlights(data);
     }
@@ -37,14 +37,14 @@ export const SpotlightParent = () => {
 
   return (
     <>
-      {spotlight.map((post, index) => (
+      {spotlight.map((post) => (
         <Spotlight
           key={post.id}
-          index={index}
-          isAlt={index % 2 !== 0}
-          title={post.title}
-          content={post.short_description}
-          img_url={post.thumbnail_img}
+          index={post.id}
+          isAlt={post.id % 2 !== 0}
+          title={post.post.title}
+          content={post.post.short_description}
+          img_url={post.post.thumbnail_img}
         />
       ))}
     </>
