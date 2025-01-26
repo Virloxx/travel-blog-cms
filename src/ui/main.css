@@ -3088,8 +3088,7 @@ input, select, textarea {
 /* Dashboard */
 
 	.delete-button {
-		background-color: rgba(255, 0, 0, 0.215);
-		margin-top: 1em;
+		background-color: rgba(255, 0, 0, 0.358);
 		max-width: min-content;
 	}
 
@@ -3104,7 +3103,7 @@ input, select, textarea {
 	}
   
 	.delete-button:hover {
-	background-color: rgba(255, 0, 0, 0.415);
+	background-color: rgba(255, 0, 0, 0.503);
 	}
 
 	.button-container {
@@ -3157,6 +3156,50 @@ input, select, textarea {
 		height: 30px;
 		object-fit: cover;
 	}
+
+	#popup-overlay {
+		-moz-align-items: center;
+		-webkit-align-items: center;
+		-ms-align-items: center;
+		align-items: center;
+		display: -moz-flex;
+		display: -webkit-flex;
+		display: -ms-flex;
+		display: flex;
+		-moz-justify-content: center;
+		-webkit-justify-content: center;
+		-ms-justify-content: center;
+		justify-content: center;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+		background: rgba(46, 49, 65, 0.8);
+		height: 100%;
+		left: 0;
+		position: fixed;
+		text-align: center;
+		top: 0;
+		width: 100%;
+	}
+
+		#popup-overlay .popup {
+			padding: 1em 2em 1em 2em ;
+			-moz-transform: translateY(0.5em);
+			-webkit-transform: translateY(0.5em);
+			-ms-transform: translateY(0.5em);
+			transform: translateY(0.5em);
+			-webkit-overflow-scrolling: touch;
+			background: #4a516a;
+			border-radius: 10px;
+			display: block;
+			max-width: 100%;
+			position: relative;
+		}
+
+			.popup-actions {
+				margin-top: 15px;
+				display: flex;
+				justify-content: center;
+				gap: 10px;
+			}
 
 
 /* Header */
