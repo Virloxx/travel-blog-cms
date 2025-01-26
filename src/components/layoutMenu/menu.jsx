@@ -14,16 +14,14 @@ function Menu(props) {
 
   const handleLogout = async () => {
     try {
-      // Wywołaj endpoint API do wylogowania użytkownika
       await fetch('/api/auth/logout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        credentials: 'include', // Umożliwia przesyłanie ciasteczek
+        credentials: 'include',
       });
   
-      // Przenieś użytkownika na stronę główną
       setIsUser(false);
       setIsAdmin(false);
       router.push('/');
@@ -41,7 +39,7 @@ function Menu(props) {
           headers: {
             'Content-Type': 'application/json',
           },
-          credentials: 'include', // Umożliwia przesyłanie ciasteczek
+          credentials: 'include',
         });
 
         if (response.ok) {

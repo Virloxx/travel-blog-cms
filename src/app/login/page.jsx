@@ -1,9 +1,9 @@
-'use client'; // Ensure the component runs on the client in Next.js 15
+'use client';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 function LoginPage() {
-  const router = useRouter(); // Initialize the router
+  const router = useRouter();
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState(null);
 
@@ -17,14 +17,13 @@ function LoginPage() {
     setError(null);
 
     try {
-      // Send login data to the API
       const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          login: formData.email, // Assuming login = email in your API
+          login: formData.email,
           password: formData.password,
         }),
       });
