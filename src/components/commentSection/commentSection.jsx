@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 const CommentSection = ({postId}) => {
-  const [comment, setComment] = useState('Start typing comment...');
+  const [comment, setComment] = useState('Type here...');
   const [comments, setComments] = useState([]);
 
   const [loading, setLoading] = useState(true);
@@ -21,7 +21,12 @@ const CommentSection = ({postId}) => {
         const data = await response.json();
 
         const filteredComments = data
-            .map((comm) => ({ id: comm.id, content: comm.content, user: comm.user.userInfo.name }));
+            .map((comm) => ({ 
+              id: comm.id, 
+              content: comm.content, 
+              user: comm.user.userInfo.name, 
+              createdAt: comm.createdAt.substring(0, 10) 
+            }));
 
         setComments(filteredComments || '');
         console.log(comments);
@@ -45,8 +50,8 @@ const CommentSection = ({postId}) => {
 
 
     const toSend = {
-        userId: 2,
-        postId: 4,
+        userId: 2, // TODO !!! FETCH ID FROM COOKIE TOKEN
+        postId: 4, // TODO !!! FIX
         content: comment
     }
     
@@ -72,26 +77,35 @@ const CommentSection = ({postId}) => {
   };
 
   return (
-    <>
+    <section id="footer">
+      <div className="inner">
         <h2>
-        Post comment
-        <textarea
-            style={{ resize: 'none' }}
-            name="title"
-            id="post_title"
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            />
+          POST YOUR COMMENT
+          <textarea
+              style={{ resize: 'none' }}
+              name="title"
+              id="post_title"
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+          />
         </h2>
-    <button onClick={() => saveComment()}>
-        POST COMMENT
-    </button>
-    {
-        comments.map((comm, index) => (
-            
-            <p key={index}>{comm.content + " " + comm.user}</p>))
-        }
-    </>
+        <button className="button primary fit" onClick={() => saveComment()}>
+          POST COMMENT
+        </button>
+        <section className="all-comments">
+          <ul className="alt">
+            {
+              comments.map((comm, index) => (
+                <li key={index}>
+                  <h4>{comm.user}<span>{comm.createdAt}</span></h4>
+                  {comm.content}
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      </div>
+    </section>
   );
 };
 

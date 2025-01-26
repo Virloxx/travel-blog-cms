@@ -86,7 +86,7 @@ function ManageSpotlights() {
                       id={`demo-category-${post.id}`}
                     >
                       <option value="">-</option>
-                      {[1, 2, 3, 4, 5].map((option) => (
+                      {[1, 2, 3, 4].map((option) => (
                         <option
                           key={option}
                           value={option}
