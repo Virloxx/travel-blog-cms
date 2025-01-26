@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 
-const CommentSection = ({postId}) => {
+const CommentSection = ({postId, user}) => {
   const [comment, setComment] = useState('Type here...');
   const [comments, setComments] = useState([]);
 
@@ -43,15 +43,13 @@ const CommentSection = ({postId}) => {
   // Save content as HTML
   const saveComment = async () => {
 
-    const isUpdating = postId !== 'new';
-
     const saveUrl = '/api/posts_api/post_comm/comment_post';
     const saveMethod = 'POST';
 
 
     const toSend = {
-        userId: 2, // TODO !!! FETCH ID FROM COOKIE TOKEN
-        postId: 4, // TODO !!! FIX
+        userId: user.id, // TODO !!! FETCH ID FROM COOKIE TOKEN
+        postId: parseInt(postId),
         content: comment
     }
     

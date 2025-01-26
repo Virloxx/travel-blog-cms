@@ -9,6 +9,7 @@ export default function SinglePostPage() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -26,6 +27,26 @@ export default function SinglePostPage() {
       }
     }
     fetchPost();
+
+    async function fetchUser() {
+      try {
+        const response = await fetch('/api/auth/user', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          credentials: 'include',
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          if (data.user) {setUser(data.user);}
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    }
+    fetchUser();
   }, [slug]);
 
   if (loading) return <p>Loading post...</p>;
@@ -55,7 +76,7 @@ export default function SinglePostPage() {
             </div>
           </div>
       </section>
-      <CommentSection postId={slug}/>
+      <CommentSection postId={slug} user={user}/>
     </div>
   );
 }
