@@ -78,18 +78,18 @@ const CommentSection = ({postId, user}) => {
     <section id="footer">
       <div className="inner">
         <h2>
-          POST YOUR COMMENT
-          <textarea
+          {user ? "POST YOUR COMMENT" : "READ COMMENTS"}
+          {user ? <textarea
               style={{ resize: 'none' }}
               name="title"
               id="post_title"
               value={comment}
               onChange={(e) => setComment(e.target.value)}
-          />
+          /> : ""}
         </h2>
-        <button className="button primary fit" onClick={() => saveComment()}>
+        {user ? (<button className="button primary fit" onClick={() => saveComment()}>
           POST COMMENT
-        </button>
+        </button>) : ""}
         <section className="all-comments">
           <ul className="alt">
             {
