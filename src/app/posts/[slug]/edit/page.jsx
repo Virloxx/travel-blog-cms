@@ -1,7 +1,7 @@
 'use client'
 import Tiptap from '@/components/editor/tiptap';
 import { useParams } from 'next/navigation';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 
 export default function EditorPage() {
   const { slug } = useParams();

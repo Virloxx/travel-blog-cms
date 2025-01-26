@@ -15,7 +15,6 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Check if the user already exists
     const existingUser = await prisma.user.findUnique({
       where: { login },
     });
@@ -24,10 +23,7 @@ export default async function handler(req, res) {
       return res.status(409).json({ message: "User already exists" });
     }
 
-    // Hash the password
     const passwordHash = bcrypt.hashSync(password, 10);
-
-    // Create the user and associated UserInfo
     const newUser = await prisma.user.create({
       data: {
         login,

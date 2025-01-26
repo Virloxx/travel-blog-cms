@@ -1,4 +1,3 @@
-// /pages/api/user.js
 import jwt from "jsonwebtoken";
 
 export default function handler(req, res) {

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export function Post({ index, title, content, img_url, img_alt, redirect_to }) {
+export function Post({ index, title, content, img_url, img_alt }) {
   const router = useRouter();
 
   const handleRouter = () => {

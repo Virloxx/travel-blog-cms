@@ -1,10 +1,10 @@
-'use client'; // Ensure the component runs on the client in Next.js 15
+'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; // Next.js 15 router import
+import { useRouter } from 'next/navigation';
 
 function SignupPage() {
-  const router = useRouter(); // Initialize the router
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -23,14 +23,12 @@ function SignupPage() {
     e.preventDefault();
     setError(null);
 
-    // Ensure passwords match
     if (formData.password !== formData.password2) {
       setError('Passwords do not match.');
       return;
     }
 
     try {
-      // Send data to the API
       const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
@@ -38,7 +36,7 @@ function SignupPage() {
         },
         body: JSON.stringify({
           name: formData.name,
-          login: formData.email, // Assuming login = email in your API
+          login: formData.email,
           password: formData.password,
         }),
       });
@@ -46,7 +44,6 @@ function SignupPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Redirect to the login page after successful signup
         router.push('/login');
       } else {
         setError(data.message || 'Something went wrong. Please try again.');

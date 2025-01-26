@@ -36,7 +36,6 @@ export default function RootLayout({
       </head>
       <body>
         <div id="page-wrapper">
-          {/* Header */}
           <header id="header">
             <h1><a href="/">Beyond Borders</a></h1>
             <nav>

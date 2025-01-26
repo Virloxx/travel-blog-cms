@@ -15,7 +15,6 @@ export default async function handler(req, res) {
     }  
 
     try {
-      // Validate `postId` exists in the Post table
       const postExists = await prisma.post.findUnique({
         where: { id: postId },
       });
@@ -24,7 +23,6 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: "Post not found" });
       }
 
-      // Update Spotlight record
       const updatedSpotlight = await prisma.spotlight.update({
         where: { id: parseInt(id, 10) },
         data: { postId },

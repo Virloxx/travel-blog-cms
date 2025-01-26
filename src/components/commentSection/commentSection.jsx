@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 const CommentSection = ({postId, user}) => {
   const [comment, setComment] = useState('Type here...');
   const [comments, setComments] = useState([]);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -40,7 +39,6 @@ const CommentSection = ({postId, user}) => {
     fetchComments();
   }, [postId]);
 
-  // Save content as HTML
   const saveComment = async () => {
 
     const saveUrl = '/api/posts_api/post_comm/comment_post';
@@ -48,7 +46,7 @@ const CommentSection = ({postId, user}) => {
 
 
     const toSend = {
-        userId: user.id, // TODO !!! FETCH ID FROM COOKIE TOKEN
+        userId: user.id,
         postId: parseInt(postId),
         content: comment
     }

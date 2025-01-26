@@ -23,7 +23,6 @@ const Tiptap = ({ postId }) => {
     content: content,
   });
 
-  // Fetch post data if postId is not "new"
   useEffect(() => {
     const fetchPost = async () => {
       if (postId === 'new') {
@@ -49,14 +48,12 @@ const Tiptap = ({ postId }) => {
     fetchPost();
   }, [postId]);
 
-  // Update editor content when `content` state changes
   useEffect(() => {
     if (editor && content) {
       editor.commands.setContent(content);
     }
   }, [editor, content]);
 
-  // Save content as HTML
   const savePostAsHTML = async () => {
     if (!editor) return;
 

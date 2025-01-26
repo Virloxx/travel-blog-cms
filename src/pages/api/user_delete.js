@@ -16,7 +16,6 @@ export default async function handler(req, res) {
   try {
     const userId = parseInt(id, 10);
 
-    // Check if the user exists
     const user = await prisma.user.findUnique({
       where: { id: userId },
     });
@@ -25,12 +24,10 @@ export default async function handler(req, res) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    // Delete all comments associated with the user
     await prisma.comment.deleteMany({
       where: { userId: userId },
     });
 
-    // Delete the user
     await prisma.user.delete({
       where: { id: userId },
     });
