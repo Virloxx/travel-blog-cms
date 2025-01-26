@@ -45,7 +45,7 @@ export default function SinglePostPage() {
               <section>
                 <div className="box alt">
                     <div className="row gtr-uniform">
-                      <div className="col-11"><span className="image fit"><img src={post.thumbnail_img} alt={post.title} /></span></div>
+                      <div className="col-12"><span className="image fit"><img src={post.thumbnail_img} alt={post.title} /></span></div>
                     </div>
                   </div>
                 <div dangerouslySetInnerHTML={{ __html: post.content }} />
