@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import CommentSection from '../../../components/commentSection/commentSection'
 
 export default function SinglePostPage() {
   const { slug } = useParams();
@@ -54,6 +55,7 @@ export default function SinglePostPage() {
             </div>
           </div>
       </section>
+      <CommentSection postId={slug}/>
     </div>
   );
 }
