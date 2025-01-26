@@ -1,12 +1,19 @@
 "use client"
 import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 export function Spotlight({ index, isAlt = false, title, content, img_url }) {
+  const router = useRouter()
+
   let normalClasses = `wrapper spotlight style${index+1}`;
 
   if (isAlt) {
     normalClasses = `wrapper spotlight style${index+1} alt`;
   }
+
+  const handleRouter = () => {
+    router.push(`/posts/${index}`)
+};
 
   return (
     <section id={index} className={normalClasses}>
@@ -15,7 +22,7 @@ export function Spotlight({ index, isAlt = false, title, content, img_url }) {
         <div className="content">
           <h2 className="major">{title}</h2>
           <p>{content}</p>
-          <a href="#" className="special">Learn more</a>
+          <a onClick={() => handleRouter()} className="special">Learn more</a>
         </div>
       </div>
     </section>
