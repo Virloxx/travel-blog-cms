@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export function Post({ index, title, content, img_url, img_alt }) {
+export function Post({ index, title, content, img_url, img_alt, redirect_to }) {
   const router = useRouter();
 
   const handleRouter = () => {
@@ -21,6 +21,11 @@ export function Post({ index, title, content, img_url, img_alt }) {
 
 export const PostParent = () => {
   const [posts, setPosts] = useState([]);
+  const router = useRouter();
+
+  const handleRouter = () => {
+    router.push(`/posts`)
+  };
 
   useEffect(() => {
     async function fetchPosts() {
@@ -33,8 +38,8 @@ export const PostParent = () => {
   }, []);
 
   return (
-  <section id="page-wrapper">
-    <div className="edit-page">
+  <section id="four" className="wrapper alt style1">
+    <div className="inner">
       <section className="features">
         {posts.map((post, index) => (
           <Post
@@ -46,6 +51,9 @@ export const PostParent = () => {
           />        
         ))}
       </section>
+      <ul className="actions">
+            <li><a onClick={() => handleRouter()} className="button">Browse All</a></li>
+      </ul>
     </div>
   </section>
   );
