@@ -13,12 +13,12 @@ export function Spotlight({ index, isAlt = false, title, content, img_url }) {
 
   const handleRouter = () => {
     router.push(`/posts/${index}`)
-};
+  };
 
   return (
     <section id={index} className={normalClasses}>
       <div className="inner">
-        <a href="#" className="image"><img src={img_url} alt={title} /></a>
+        <a onClick={() => handleRouter()} className="image"><img src={img_url} alt={title} /></a>
         <div className="content">
           <h2 className="major">{title}</h2>
           <p>{content}</p>
