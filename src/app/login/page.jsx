@@ -32,6 +32,7 @@ function LoginPage() {
       const data = await response.json();
 
       if (response.ok) {
+        
         router.push('/');
       } else {
         setError(data.message || 'Invalid email or password. Please try again.');
