@@ -47,7 +47,7 @@ model User {
   id           Int      @id @default(autoincrement())
   login        String   @unique
   passwordHash String   @map("password_hash")
-  userInfo     UserInfo?
+  userInfo     UserInfo? @relation()
   comments     Comment[] // Relation to comments
 
   @@map("User")
@@ -61,10 +61,11 @@ model UserInfo {
   isAdmin       Boolean  @default(false) @map("is_admin")
   profilePicUrl String?  @map("profile_pic_url")
 
-  user          User     @relation(fields: [id], references: [id])
+  user          User     @relation(fields: [id], references: [id], onDelete: Cascade)
 
   @@map("User_info")
 }
+
 
 model Tag {
   id    Int    @id @default(autoincrement())
@@ -75,7 +76,7 @@ model Tag {
 model Comment {
   id        Int      @id @default(autoincrement())
   rootId    Int?     // ID of the first comment in the discussion thread (null for the first comment)
-  userId    Int      // ID of the User who posted the comment
+  userId    Int      
   postId    Int      // ID of the Post under which the comment was posted
   createdAt DateTime @default(now())
   editedAt  DateTime?

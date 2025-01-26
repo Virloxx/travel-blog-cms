@@ -3,36 +3,41 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
-  if (req.method === 'DELETE') {
-    const { id } = req.body;
+  if (req.method !== 'DELETE') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-    if (!id) {
-      return res.status(400).json({ error: 'User ID is required' });
+  const { id } = req.body;
+
+  if (!id) {
+    return res.status(400).json({ error: 'User ID is required' });
+  }
+
+  try {
+    const userId = parseInt(id, 10);
+
+    // Check if the user exists
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
     }
 
-    try {
-      const user = await prisma.userInfo.findUnique({
-        where: { id: parseInt(id, 10) },
-      });
+    // Delete all comments associated with the user
+    await prisma.comment.deleteMany({
+      where: { userId: userId },
+    });
 
-      if (!user) {
-        return res.status(404).json({ error: 'User not found' });
-      }
+    // Delete the user
+    await prisma.user.delete({
+      where: { id: userId },
+    });
 
-      await prisma.user.delete({
-        where: { id: parseInt(id, 10) },
-        include: {
-            userInfo: true
-        }
-      });
-
-      return res.status(200).json({ message: 'User deleted successfully' });
-    } catch (error) {
-      console.error('Error deleting user:', error);
-      return res.status(500).json({ error: 'Failed to delete user' });
-    }
-  } else {
-    res.setHeader('Allow', ['DELETE']);
-    res.status(405).end(`Method ${req.method} Not Allowed`);
+    return res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    return res.status(500).json({ error: 'Failed to delete user' });
   }
 }

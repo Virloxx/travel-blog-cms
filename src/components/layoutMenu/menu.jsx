@@ -24,6 +24,8 @@ function Menu(props) {
       });
   
       // Przenieś użytkownika na stronę główną
+      setIsUser(false);
+      setIsAdmin(false);
       router.push('/');
       
     } catch (error) {
