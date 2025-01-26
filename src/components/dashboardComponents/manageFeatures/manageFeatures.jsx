@@ -11,7 +11,7 @@ function ManageFeatures() {
     if (feature_id === "-") return;
 
     try {
-        const response = await fetch("/api/edit_feature", { // ADD EDIT_FEATURES API !!!
+        const response = await fetch("/api/edit_spotlight", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
