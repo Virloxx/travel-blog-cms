@@ -24,7 +24,7 @@ export const PostParent = () => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await fetch('/api/post');
+      const response = await fetch('/api/post_get');
       const data = await response.json();
       setPosts(data);
     }
@@ -39,10 +39,10 @@ export const PostParent = () => {
         {posts.map((post, index) => (
           <Post
             key={post.id}
-            index={index}
-            title={post.post.title}
-            content={post.post.short_description}
-            img_url={post.post.thumbnail_img}
+            index={post.id}
+            title={post.title}
+            content={post.short_description}
+            img_url={post.thumbnail_img}
           />        
         ))}
       </section>
