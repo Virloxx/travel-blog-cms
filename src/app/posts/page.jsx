@@ -6,7 +6,7 @@ export function Post({ index, title, content, img_url, img_alt }) {
   const router = useRouter();
 
   const handleRouter = () => {
-    router.push(`/posts/${index+1}`)
+    router.push(`/posts/${index}`)
   };
 
   return (
