@@ -29,7 +29,7 @@ export const PostParent = () => {
 
   useEffect(() => {
     async function fetchPosts() {
-      const response = await fetch('/api/post');
+      const response = await fetch('/api/get_features');
       const data = await response.json();
       setPosts(data);
     }

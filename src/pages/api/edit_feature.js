@@ -23,7 +23,7 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: "Post not found" });
       }
 
-      const updatedFeature = await prisma.feature.update({
+      const updatedFeature = await prisma.features.update({
         where: { id: parseInt(id, 10) },
         data: { postId },
       });

@@ -47,7 +47,7 @@ export const SpotlightParent = () => {
       {spotlight.map((post) => (
         <Spotlight
           key={post.id}
-          index={post.id}
+          index={post.postId}
           isAlt={post.id % 2 !== 0}
           title={post.post.title}
           content={post.post.short_description}
