@@ -1,4 +1,4 @@
-import { useState, forwardRef, useImperativeHandle } from 'react';
+import { useState, forwardRef, useImperativeHandle } from "react";
 
 const UploadForm = forwardRef((props, ref) => {
   const [file, setFile] = useState(null);
@@ -8,19 +8,30 @@ const UploadForm = forwardRef((props, ref) => {
   };
 
   const handleSubmit = async (e) => {
+    e?.preventDefault();
+
+    if (!file) return alert("Please select a file!");
 
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append("file", file);
 
-    const res = await fetch('/api/upload', {
-      method: 'POST',
+    const res = await fetch("/api/upload", {
+      method: "POST",
       body: formData,
     });
 
     if (res.ok) {
-      alert('File uploaded successfully!');
+      const fileName = file.name;
+
+      await fetch("/api/misc_info", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key: "bannerImage", value: fileName }),
+      });
+
+      alert("File uploaded successfully!");
     } else {
-      alert('File upload failed!');
+      alert("File upload failed!");
     }
   };
 

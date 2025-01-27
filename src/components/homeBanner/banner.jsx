@@ -1,8 +1,9 @@
-"use client"
-import {React, useEffect, useState} from 'react'
+"use client";
+import { useState, useEffect } from "react";
 
 function Banner() {
   const [miscInfo, setMiscInfo] = useState([]);
+  const [bannerImagePath, setBannerImagePath] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,31 +13,47 @@ function Banner() {
     };
 
     fetchData();
+
+    const fetchBannerImage = async () => {
+      try {
+        const response = await fetch("/api/latest_image");
+        const data = await response.json();
+        if (data.fileName) {
+          setBannerImagePath(`/uploads/${data.fileName}`);
+        } else {
+          console.error("No file found in uploads directory");
+        }
+      } catch (error) {
+        console.error("Failed to fetch banner image:", error);
+      }
+    };
+
+    fetchBannerImage();
   }, []);
 
   return (
     <section id="banner">
-        <div className="inner">
-            <img
-              className="banner author-photo" 
-              src="https://st2.depositphotos.com/1011382/7489/i/450/depositphotos_74896235-stock-photo-backpacker-man-taking-selfie-on.jpg" 
-              alt="Author photo" 
-            />
-            <div className="banner text-area">
-            {miscInfo.length > 2 && miscInfo[1] ? (
-                <h2>{miscInfo[1].value}</h2>
-              ) : (
-                <h2>Loading...</h2>
-              )}
-              {miscInfo.length > 2 && miscInfo[2] ? (
-                <p>{miscInfo[2].value}</p>
-              ) : (
-                <p>Loading...</p>
-              )}
-            </div>
+      <div className="inner">
+        <img
+          className="banner author-photo"
+          src={bannerImagePath || "https://via.placeholder.com/600x300"}
+          alt="Banner"
+        />
+        <div className="banner text-area">
+          {miscInfo.length > 1 && miscInfo[0] ? (
+            <h2>{miscInfo[0].value}</h2>
+          ) : (
+            <h2>Loading...</h2>
+          )}
+          {miscInfo.length > 1 && miscInfo[1] ? (
+            <p>{miscInfo[1].value}</p>
+          ) : (
+            <p>Loading...</p>
+          )}
         </div>
-	</section>
-  )
+      </div>
+    </section>
+  );
 }
 
-export default Banner
+export default Banner;
