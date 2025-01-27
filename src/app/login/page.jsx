@@ -72,7 +72,7 @@ function LoginPage() {
               />
             </div>
           </div>
-          <a href="#">Forgot password?</a>
+          {/* <a href="#">Forgot password?</a> */}
           <ul className="actions">
             <li>
               <input type="submit" value="Login" />

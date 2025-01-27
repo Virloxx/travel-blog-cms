@@ -6,7 +6,6 @@ export function Spotlight({ index, isAlt = false, title, content, img_url, alte 
   const router = useRouter()
 
   let normalClasses = `wrapper spotlight style${alte+1}`;
-  console.log("kurwa" + alte);
   if (isAlt) {
     normalClasses = `wrapper spotlight style${alte+1} alt`;
   }
@@ -48,7 +47,7 @@ export const SpotlightParent = () => {
         <Spotlight
           key={post.id}
           index={post.postId}
-          isAlt={iter % 2 !== 0}
+          isAlt={iter % 2 == 0}
           title={post.post.title}
           content={post.post.short_description}
           img_url={post.post.thumbnail_img}

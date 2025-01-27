@@ -6,7 +6,7 @@ export function Post({ index, title, content, img_url, img_alt }) {
   const router = useRouter();
 
   const handleRouter = () => {
-    router.push(`/posts/${index+1}`)
+    router.push(`/posts/${index}`)
   };
 
   return (
@@ -44,7 +44,7 @@ export const PostParent = () => {
         {posts.map((post, index) => (
           <Post
             key={post.id}
-            index={index}
+            index={post.postId}
             title={post.post.title}
             content={post.post.short_description}
             img_url={post.post.thumbnail_img}

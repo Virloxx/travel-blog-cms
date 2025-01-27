@@ -63,7 +63,7 @@ function ManageUsers() {
                                 <th>Created At</th>
                                 <th>Edited At</th>
                                 <th>is Admin</th>
-                                <th>Profile Pic</th>
+                                {/* <th>Profile Pic</th> */}
                                 <th className="th-actions">Actions</th>
                             </tr>
                         </thead>
@@ -76,19 +76,19 @@ function ManageUsers() {
                                     <td>{new Date(user.createdAt).toLocaleDateString()}</td>
                                     <td>{user.editedAt ? new Date(user.editedAt).toLocaleDateString() : 'N/A'}</td>
                                     <td>{user.isAdmin ? 'Yes' : 'No'}</td>
-                                    <td>
+                                    {/* <td>
                                         <img
                                             src={user.profilePicUrl}
                                             alt="Profile Pic URL"
                                             className="thumbnail"
                                         />
-                                    </td>
+                                    </td> */}
                                     <td className="action-buttons">
-                                        <a href={`/users/${user.id}/edit`}>
+                                        {/* <a href={`/users/${user.id}/edit`}>
                                             <button className="button primary fit edit-button">
                                                 <MdEdit />
                                             </button>
-                                        </a>
+                                        </a> */}
                                         <button
                                             className="button fit delete-button"
                                             onClick={() => openPopUp(user.id)}
