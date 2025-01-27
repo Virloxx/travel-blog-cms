@@ -15,12 +15,14 @@ model Spotlight {
   id      Int  @id @default(autoincrement())
   postId  Int
   post    Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  number  Int
 }
 
 model Features {
   id      Int  @id @default(autoincrement())
   postId  Int  @unique
   post    Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  number  Int
 }
 
 model Misc_Info {

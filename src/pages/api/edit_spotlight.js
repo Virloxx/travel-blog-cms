@@ -10,9 +10,9 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Both 'id' and 'postId' are required" });
     }
 
-    if (id > 4 || id < 1) {
-        return res.status(400).json({ error: "Spotlight ID is bigger than 4 or smaller than 1" });
-    }  
+    // if (id > 4 || id < 1) {
+    //     return res.status(400).json({ error: "Spotlight ID is bigger than 4 or smaller than 1" });
+    // }  
 
     try {
       const postExists = await prisma.post.findUnique({
