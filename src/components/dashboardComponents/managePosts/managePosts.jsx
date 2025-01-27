@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { useRouter } from 'next/navigation';
 
 function ManagePosts() {
     const [posts, setPosts] = useState([]);
     const [isPopUpOpen, setIsPopUpOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null);
+    const router = useRouter();
 
     useEffect(() => {
         async function getPosts() {
@@ -48,6 +50,10 @@ function ManagePosts() {
         } finally {
             closePopUp();
         }
+    };
+
+    const handleRouter = () => {
+        router.push("/posts/new/edit")
     };
 
     return (
@@ -97,6 +103,7 @@ function ManagePosts() {
                         </tbody>
                     </table>
                 </div>
+                <button onClick={()=>handleRouter()}>ADD NEW POST</button>
             </main>
 
             {isPopUpOpen && (

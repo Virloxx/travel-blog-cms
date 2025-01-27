@@ -29,7 +29,7 @@ const UploadForm = forwardRef((props, ref) => {
         body: JSON.stringify({ key: "bannerImage", value: fileName }),
       });
 
-      alert("File uploaded successfully!");
+      // alert("File uploaded successfully!");
     } else {
       alert("File upload failed!");
     }

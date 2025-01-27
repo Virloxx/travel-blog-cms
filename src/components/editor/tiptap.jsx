@@ -9,6 +9,7 @@ const Tiptap = ({ postId }) => {
   const [title, setTitle] = useState('Enter title here...');
   const [desc, setDesc] = useState('Enter description here...');
   const [content, setContent] = useState('Start typing here...');
+  const [image, setImage] = useState('Enter image URL...');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -38,6 +39,7 @@ const Tiptap = ({ postId }) => {
         setTitle(data.title || '');
         setDesc(data.short_description || '');
         setContent(data.content || '');
+        setImage(data.thumbnail_img)
       } catch (err) {
         setError(err.message);
       } finally {
@@ -67,8 +69,7 @@ const Tiptap = ({ postId }) => {
     if(isUpdating){
       toSend = {
         title: title,
-          thumbnail_img:
-            'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          thumbnail_img: image,
           short_description: desc,
           content: contentHTML,
           id: parseInt(postId)
@@ -77,8 +78,7 @@ const Tiptap = ({ postId }) => {
     else{
       toSend = {
         title: title,
-          thumbnail_img:
-            'https://plus.unsplash.com/premium_photo-1680284197408-0f83f185818b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+          thumbnail_img: image,
           short_description: desc,
           content: contentHTML
       }
@@ -133,7 +133,6 @@ const Tiptap = ({ postId }) => {
               onChange={(e) => setDesc(e.target.value)}
             />
           </h2>
-
           <BubbleMenu editor={editor} tippyOptions={{ duration: 100 }}>
             <div className={styles.bubblemenu}>
               <button
@@ -164,7 +163,18 @@ const Tiptap = ({ postId }) => {
           </BubbleMenu>
         </>
       )}
+      <h2>POST CONTENT</h2>
       <EditorContent editor={editor} />
+      <h2>
+            POST PHOTO
+            <textarea
+              style={{ resize: 'none' }}
+              name="image"
+              id="post_image"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
+          </h2>
       <button onClick={savePostAsHTML} className={styles.saveButton}>
         {postId === 'new' ? 'Create Post' : 'Update Post'}
       </button>
