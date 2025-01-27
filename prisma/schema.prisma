@@ -14,13 +14,13 @@ generator client {
 model Spotlight {
   id      Int  @id @default(autoincrement())
   postId  Int
-  post    Post @relation(fields: [postId], references: [id])
+  post    Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
 
 model Features {
   id      Int  @id @default(autoincrement())
   postId  Int  @unique
-  post    Post @relation(fields: [postId], references: [id])
+  post    Post @relation(fields: [postId], references: [id], onDelete: Cascade)
 }
 
 model Misc_Info {
@@ -38,8 +38,8 @@ model Post {
   created_at        DateTime
   edited_at         DateTime
   Spotlight         Spotlight[]  // Relation to Spotlight
-  Features          Features?   // Relation to Features
-  tags              Tag[]       @relation("PostTags")
+  Features          Features[]   // Relation to Features
+  
   comments          Comment[]   // Relation to comments
 }
 
@@ -67,11 +67,6 @@ model UserInfo {
 }
 
 
-model Tag {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  posts Post[] @relation("PostTags")
-}
 
 model Comment {
   id        Int      @id @default(autoincrement())
@@ -83,7 +78,7 @@ model Comment {
   content   String
 
   user      User     @relation(fields: [userId], references: [id])
-  post      Post     @relation(fields: [postId], references: [id])
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@index([postId])
   @@index([userId])
