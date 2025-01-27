@@ -7,6 +7,7 @@ const CommentSection = ({postId, user}) => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -37,7 +38,8 @@ const CommentSection = ({postId, user}) => {
     };
 
     fetchComments();
-  }, [postId]);
+    setRefresh(false);
+  }, [postId, refresh]);
 
   const saveComment = async () => {
 
@@ -60,7 +62,7 @@ const CommentSection = ({postId, user}) => {
 
       const data = await response.json();
       if (response.ok) {
-        alert('Comment saved successfully!');
+        // alert('Comment saved successfully!');
         console.log('Comment created:', data.content);
       } else {
         console.error('Error saving comment:');
@@ -70,6 +72,7 @@ const CommentSection = ({postId, user}) => {
       console.error('Error:', error);
       alert('An error occurred while saving the comment.');
     }
+    setRefresh(true);
   };
 
   return (
