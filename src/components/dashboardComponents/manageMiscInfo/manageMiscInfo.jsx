@@ -31,6 +31,7 @@ const ManageMiscInfo = () => {
             id="post_desc"
           />
         </h2>
+        <h2>BANNER PHOTO</h2>
         <UploadForm ref={uploadFormRef} />
         <button onClick={handleUpdateBanner}>Update Banner</button>
       </div>
