@@ -2,13 +2,13 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-export function Spotlight({ index, isAlt = false, title, content, img_url }) {
+export function Spotlight({ index, isAlt = false, title, content, img_url, alte }) {
   const router = useRouter()
 
-  let normalClasses = `wrapper spotlight style${index+1}`;
-
+  let normalClasses = `wrapper spotlight style${alte+1}`;
+  console.log("kurwa" + alte);
   if (isAlt) {
-    normalClasses = `wrapper spotlight style${index+1} alt`;
+    normalClasses = `wrapper spotlight style${alte+1} alt`;
   }
 
   const handleRouter = () => {
@@ -44,14 +44,15 @@ export const SpotlightParent = () => {
 
   return (
     <>
-      {spotlight.map((post) => (
+      {spotlight.map((post,iter) => (
         <Spotlight
           key={post.id}
           index={post.postId}
-          isAlt={post.id % 2 !== 0}
+          isAlt={iter % 2 !== 0}
           title={post.post.title}
           content={post.post.short_description}
           img_url={post.post.thumbnail_img}
+          alte={iter}
         />
       ))}
     </>
