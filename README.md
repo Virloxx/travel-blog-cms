@@ -1,12 +1,26 @@
-# To be replaced with actual README 
+# Travel Blog CMS
 
-## Temporary knowledge base for team members
+A simple Content Management System (CMS) built for a university project. This Travel Blog allows users to browse travel content and interact with posts via comments, while administrative tasks are reserved for the admin. The project is developed using **Next.js** for both frontend and backend functionalities, with **Prisma** as the ORM for database management.
 
-### DODAWANIE STRON
-Nowa strona, żeby posiadała zdefiniowany w layout.tsx bazowy layout (menu+footer) musi znajdować się w:
+## Features
 
-/src/app/<nazwa-sciezki-w-URL>/page.jsx
+- **User Authentication**
+  - Registration
+  - Login
+  - Logout
 
-to co zwraca komponent page.jsx, to bedzie wyswietlone tam gdzie layout.tsx ma {children}
+- **Content Management (Admin Only)**
+  - Create new posts
+  - Edit posts (title, thumbnail, and content)
+  - Delete user accounts along with all associated comments
 
-### DYNAMICZNE STRONY - POSTY
+- **User Functionality**
+  - Browse travel blog posts
+  - Search posts by title
+  - Add comments to posts
+
+## Technologies Used
+
+- **Next.js**: React framework for building the application
+- **Prisma**: ORM for database interactions
+- **TipTap**: Rich Text Editor
