@@ -1,5 +1,6 @@
 import React from 'react'
 import { getPost, getManyPosts } from '@/lib/post'
+import CommentSection from '@/ui/commentSection'
 
 export default async function Page() {
     const post = await getPost(16, true);
@@ -21,6 +22,10 @@ export default async function Page() {
                     <br></br>
                 </div>
             ))}
+
+            <br></br>
+            <div>A tutaj już fetchowanie normalnie jebnięte przez API</div>
+            <CommentSection user={0} postId={15}></CommentSection>
         </>
     )
 }
