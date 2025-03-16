@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import UploadForm from "../../uploadForm/uploadForm";
+import UploadForm from "../uploadForm/uploadForm";
 
 const ManageMiscInfo = () => {
   const uploadFormRef = useRef();
