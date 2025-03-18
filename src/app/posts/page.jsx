@@ -36,7 +36,7 @@ export const PostParent = () => {
   <section id="page-wrapper">
     <div className="edit-page">
       <section className="features">
-        {posts.map((post, index) => (
+        {posts.map((post) => (
           <Post
             key={post.id}
             index={post.id}
