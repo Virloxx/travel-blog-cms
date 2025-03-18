@@ -5,38 +5,27 @@ import { useState, useEffect } from 'react';
 const CommentSection = ({postId, user}) => {
   const [comment, setComment] = useState('Type here...');
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        setLoading(true);
+      const fetchComments = async () => {
+      const response = await fetch(`/api/posts_api/post_comm/${postId}`);
+      
+      if (!response.ok) throw new Error('Failed to fetch comment');
+      
+      const data = await response.json();
 
-        const response = await fetch(`/api/posts_api/post_comm/${postId}`);
-        
-        if (!response.ok) throw new Error('Failed to fetch comment');
-        
-        const data = await response.json();
+      const filteredComments = data
+          .map((comm) => ({ 
+            id: comm.id, 
+            content: comm.content, 
+            user: comm.user.userInfo.name, 
+            createdAt: comm.createdAt.substring(0, 10) 
+          }));
 
-        const filteredComments = data
-            .map((comm) => ({ 
-              id: comm.id, 
-              content: comm.content, 
-              user: comm.user.userInfo.name, 
-              createdAt: comm.createdAt.substring(0, 10) 
-            }));
-
-        setComments(filteredComments || '');
-        console.log(comments);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+      setComments(filteredComments || '');
+      console.log(comments);
     };
-
     fetchComments();
     setRefresh(false);
   }, [postId, refresh]);

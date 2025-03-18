@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 
 function ManageUsers() {
