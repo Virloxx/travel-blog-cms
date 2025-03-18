@@ -1,5 +1,6 @@
 import React from 'react'
 import { getManyPosts } from '@/lib/post'
+import SelectColumn from './selectColumn';
 
 export default async function PostList() {
     const posts = await getManyPosts(0, 5, true, true, true);
@@ -34,6 +35,7 @@ export default async function PostList() {
                   <td>{post.short_description}</td>
                   <td>{new Date(post.created_at).toLocaleDateString()}</td>
                   <td>
+                    <SelectColumn post={post}/>
                     {/* <select
                       value={selectedValues[post.id] || ''}
                       onChange={(event) => handleChange(event, post.id)}
