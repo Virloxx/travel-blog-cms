@@ -3,34 +3,29 @@
 import { useState, useEffect } from 'react';
 
 const CommentSection = ({postId, user}) => {
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState('Type here...');
   const [comments, setComments] = useState([]);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await fetch(`/api/posts_api/post_comm/${postId}`);
-        
-        if (!response.ok) throw new Error('Failed to fetch comment');
-        
-        const data = await response.json();
+      const fetchComments = async () => {
+      const response = await fetch(`/api/posts_api/post_comm/${postId}`);
+      
+      if (!response.ok) throw new Error('Failed to fetch comment');
+      
+      const data = await response.json();
 
-        const filteredComments = data
-            .map((comm) => ({ 
-              id: comm.id, 
-              content: comm.content, 
-              user: comm.user.userInfo.name, 
-              createdAt: comm.createdAt.substring(0, 10) 
-            }));
+      const filteredComments = data
+          .map((comm) => ({ 
+            id: comm.id, 
+            content: comm.content, 
+            user: comm.user.userInfo.name, 
+            createdAt: comm.createdAt.substring(0, 10) 
+          }));
 
-        setComments(filteredComments || '');
-        console.log(comments);
-      } catch (err) {
-        setError(err.message);
-      }
+      setComments(filteredComments || '');
+      console.log(comments);
     };
-
     fetchComments();
     setRefresh(false);
   }, [postId, refresh]);
@@ -67,7 +62,6 @@ const CommentSection = ({postId, user}) => {
       alert('An error occurred while saving the comment.');
     }
     setRefresh(true);
-    setComment('');
   };
 
   return (
@@ -80,7 +74,6 @@ const CommentSection = ({postId, user}) => {
               name="title"
               id="post_title"
               value={comment}
-              placeholder='Type here...'
               onChange={(e) => setComment(e.target.value)}
           /> : ""}
         </h2>

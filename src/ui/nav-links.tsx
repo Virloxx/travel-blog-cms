@@ -32,7 +32,7 @@ export default function NavLinks() {
     const pathname = usePathname();
 
   return (
-        links.map((link, index) => (
+        links.map((link) => (
             <Link key={link.name} href={link.href} style={pathname === link.href ? {backgroundColor: "#4b4e63"} : {backgroundColor: "#4b4e55"}}>
             <button>{link.name}</button>
             </Link> 

@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import Menu from '../components/layoutMenu/menu';
 import '../ui/main.css';
+import Link from 'next/link';
 
 export default function RootLayout({
   children,
@@ -37,7 +38,7 @@ export default function RootLayout({
       <body>
         <div id="page-wrapper">
           <header id="header">
-            <h1><a href="/">Beyond Borders</a></h1>
+            <h1><Link href="/">Beyond Borders</Link></h1>
             <nav>
               <a href="#menu" onClick={(e) => { e.preventDefault(); toggleMenu(); }}>Menu</a>
             </nav>

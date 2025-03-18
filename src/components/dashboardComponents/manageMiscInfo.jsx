@@ -1,12 +1,40 @@
 "use client";
 
 import { useRef, useState } from "react";
-import UploadForm from "../uploadForm/uploadForm";
 
 const ManageMiscInfo = () => {
   const uploadFormRef = useRef();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = async () => {
+    if (!file) return alert("Please select a file!");
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const res = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (res.ok) {
+      const fileName = file.name;
+
+      await fetch("/api/misc_info", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ key: "bannerImage", value: fileName }),
+      });
+    } else {
+      alert("File upload failed!");
+    }
+  };
 
   const handleUpdateBanner = async () => {
     const updateTitleRes = await fetch("/api/misc_info", {
@@ -32,10 +60,7 @@ const ManageMiscInfo = () => {
     }
 
     alert("Banner updated successfully!");
-
-    if (uploadFormRef.current) {
-      uploadFormRef.current.submitForm();
-    }
+    await handleFileUpload();
   };
 
   return (
@@ -62,7 +87,7 @@ const ManageMiscInfo = () => {
           />
         </h2>
         <h2>BANNER PHOTO</h2>
-        <UploadForm ref={uploadFormRef} />
+        <input type="file" onChange={handleFileChange} />
         <button onClick={handleUpdateBanner}>Update Banner</button>
       </div>
     </section>
