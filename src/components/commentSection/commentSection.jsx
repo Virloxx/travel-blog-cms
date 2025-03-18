@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 const CommentSection = ({postId, user}) => {
-  const [comment, setComment] = useState('Type here...');
+  const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -42,10 +42,8 @@ const CommentSection = ({postId, user}) => {
   }, [postId, refresh]);
 
   const saveComment = async () => {
-
     const saveUrl = '/api/posts_api/post_comm/comment_post';
     const saveMethod = 'POST';
-
 
     const toSend = {
         userId: user.id,
@@ -73,6 +71,7 @@ const CommentSection = ({postId, user}) => {
       alert('An error occurred while saving the comment.');
     }
     setRefresh(true);
+    setComment('');
   };
 
   return (
@@ -85,6 +84,7 @@ const CommentSection = ({postId, user}) => {
               name="title"
               id="post_title"
               value={comment}
+              placeholder="Type here..."
               onChange={(e) => setComment(e.target.value)}
           /> : ""}
         </h2>
