@@ -9,8 +9,9 @@ export default function SelectColumn({post}) {
         if (event.target == null) return;
 
         const feature_id = event.target.value;
+        console.log("Feature id: " + feature_id);
         const post_id = postId;
-    
+        console.log("Post id: " + post_id);
         if (feature_id === "-") return;
     
         try {

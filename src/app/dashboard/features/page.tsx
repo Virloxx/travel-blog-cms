@@ -1,10 +1,10 @@
-"use client"
-
 import React from 'react';
-import ManagePosts from '@/components/dashboardComponents/manageFeatures';
+import PostList from '@/components/dashboardComponents/postList';
+import ManageFeatures from '@/components/dashboardComponents/manageFeatures'
 
 export default function Page() {
     return (
-        <ManagePosts />
+        <ManageFeatures></ManageFeatures>
+        // <PostList/>
     );
 }
