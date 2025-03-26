@@ -19,6 +19,8 @@ export default async function handler(req, res) {
         where: { id: postId },
       });
 
+      
+
       if (!postExists) {
         return res.status(404).json({ error: "Post not found" });
       }

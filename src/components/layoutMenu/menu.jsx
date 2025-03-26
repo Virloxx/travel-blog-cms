@@ -76,7 +76,7 @@ function Menu(props) {
             <li><a onClick={() => (handleRouter("/"), handleLogout())}>Log out</a></li>
           )}
           {isAdmin && (
-            <li><a onClick={() => handleRouter("/dashboard")}>Dashboard</a></li>
+            <li><a onClick={() => handleRouter("/dashboard/users")}>Dashboard</a></li>
           )}
         </ul>
         <a href="#" onClick={(event) => { event.preventDefault(); props.close(); }} className="close">Close</a>

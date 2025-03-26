@@ -1,56 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react'
+import { getManyPosts } from '@/lib/post'
+import SelectColumn from './selectColumn';
 
-function ManageFeatures() {
-  const [posts, setPosts] = useState([]);
-  const [selectedValues, setSelectedValues] = useState({});
-
-  const handleChange = async (event, postId) => {
-    const feature_id = event.target.value;
-    const post_id = postId;
-
-    if (feature_id === "-") return;
-
-    try {
-        const response = await fetch("/api/edit_feature", {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ "id": parseInt(feature_id), "postId": parseInt(post_id) }),
-        });
+export default async function PostList() {
+    const posts = await getManyPosts(0, 5, true, true, true);
     
-        if (!response.ok) {
-          const errorData = await response.json();
-          console.error("Failed to update feature:", errorData);
-          alert(`Error: ${errorData.error}`);
-          return;
-        }
-    
-        const data = await response.json();
-        console.log("Feature updated successfully:", data);
-        alert("Feature updated successfully!");
-      } catch (error) {
-        console.error("An error occurred while updating feature:", error);
-        alert("An unexpected error occurred. Please try again.");
-      }
-
-    setSelectedValues((prevSelectedValues) => ({
-      ...prevSelectedValues,
-      [postId]: feature_id,
-    }));
-  };
-
-  useEffect(() => {
-    async function getPosts() {
-      const response = await fetch('/api/post_get');
-      const json = await response.json();
-      setPosts(json);
-    }
-    getPosts();
-  }, []);
-
-  return (
-    <div className="dashboard-container">
+    return (
+      <div className="dashboard-container">
       <main className="dashboard-content">
         <div className="table-container">
           <table className="posts-table">
@@ -65,7 +21,7 @@ function ManageFeatures() {
               </tr>
             </thead>
             <tbody>
-              {posts.map((post) => (
+              {posts?.map((post) => (
                 <tr key={post.id}>
                   <td>{post.id}</td>
                   <td>{post.title}</td>
@@ -79,7 +35,8 @@ function ManageFeatures() {
                   <td>{post.short_description}</td>
                   <td>{new Date(post.created_at).toLocaleDateString()}</td>
                   <td>
-                    <select
+                    <SelectColumn post={post}/>
+                    {/* <select
                       value={selectedValues[post.id] || ''}
                       onChange={(event) => handleChange(event, post.id)}
                       name="demo-category"
@@ -95,7 +52,7 @@ function ManageFeatures() {
                           {option}
                         </option>
                       ))}
-                    </select>
+                    </select> */}
                   </td>
                 </tr>
               ))}
@@ -104,7 +61,5 @@ function ManageFeatures() {
         </div>
       </main>
     </div>
-  );
+  )
 }
-
-export default ManageFeatures;

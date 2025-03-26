@@ -13,13 +13,13 @@ export default async function handler(req, res) {
       });
       res.status(200).json(miscInfo);
     } catch (error) {
-      res.status(500).json({ error: "Something went wrong" });
+      res.status(500).json({ error: error });
     }
   } else if (req.method === "POST") {
     const { key, value } = req.body;
 
     if (!key || !value) {
-      return res.status(400).json({ error: "Key and value are required" });
+      return res.status(400).json({ error: error });
     }
 
     try {

@@ -19,7 +19,7 @@ function Post({ index, title, content, img_url, img_alt }) {
   );
 }
 
-export const PostParent = () => {
+export default function PostParent () {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export const PostParent = () => {
   <section id="page-wrapper">
     <div className="edit-page">
       <section className="features">
-        {posts.map((post, index) => (
+        {posts.map((post) => (
           <Post
             key={post.id}
             index={post.id}
@@ -50,5 +50,3 @@ export const PostParent = () => {
   </section>
   );
 };
-
-export default PostParent;

@@ -5,15 +5,11 @@ import { useState, useEffect } from 'react';
 const CommentSection = ({postId, user}) => {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        setLoading(true);
-
         const response = await fetch(`/api/posts_api/post_comm/${postId}`);
         
         if (!response.ok) throw new Error('Failed to fetch comment');
@@ -32,8 +28,6 @@ const CommentSection = ({postId, user}) => {
         console.log(comments);
       } catch (err) {
         setError(err.message);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -84,7 +78,7 @@ const CommentSection = ({postId, user}) => {
               name="title"
               id="post_title"
               value={comment}
-              placeholder="Type here..."
+              placeholder='Type here...'
               onChange={(e) => setComment(e.target.value)}
           /> : ""}
         </h2>

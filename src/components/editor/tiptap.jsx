@@ -157,7 +157,7 @@ const Tiptap = ({ postId }) => {
                 onClick={() => editor.chain().focus().toggleBlockquote().run()}
                 className={editor.isActive('blockquote') ? styles.isactive : ''}
               >
-                " "
+                &quot; &quot;
               </button>
             </div>
           </BubbleMenu>
