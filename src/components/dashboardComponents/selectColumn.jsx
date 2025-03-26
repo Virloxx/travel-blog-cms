@@ -1,5 +1,4 @@
 "use client"
-import { Select } from '@prisma/client/runtime/library';
 import React, { useState } from 'react'
 
 export default function SelectColumn({post}) {
