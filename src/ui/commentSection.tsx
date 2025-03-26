@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+// import React, { PropsWithChildren } from 'react';
 import { type Comment } from '@prisma/client';
 
 export default async function CommentSection({comments}: {comments: Array<Comment>}) {

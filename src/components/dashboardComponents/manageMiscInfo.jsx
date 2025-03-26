@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 const ManageMiscInfo = () => {
-  const uploadFormRef = useRef();
+  // const uploadFormRef = useRef();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState(null);

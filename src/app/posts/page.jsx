@@ -19,7 +19,7 @@ function Post({ index, title, content, img_url, img_alt }) {
   );
 }
 
-export const PostParent = () => {
+export default function PostParent () {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -50,5 +50,3 @@ export const PostParent = () => {
   </section>
   );
 };
-
-export default PostParent;

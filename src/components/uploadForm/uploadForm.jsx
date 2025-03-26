@@ -46,4 +46,5 @@ const UploadForm = forwardRef((props, ref) => {
   );
 });
 
+UploadForm.displayName = "UploadForm";
 export default UploadForm;
